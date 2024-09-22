@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpuntx3vrj4ap"]
+[gd_scene load_steps=7 format=3 uid="uid://cpuntx3vrj4ap"]
 
-[ext_resource type="Texture2D" uid="uid://lxflfm680oit" path="res://images/Nebula Blue.png" id="1_xp0eu"]
+[ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="1_qv12b"]
 [ext_resource type="PackedScene" uid="uid://75amelshbw2u" path="res://scenes/player_ship.tscn" id="2_6mlfo"]
 [ext_resource type="PackedScene" uid="uid://s6oyhg2go8or" path="res://scenes/asteroid.tscn" id="3_tsrvc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u55q4"]
+distance = -1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kdnna"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_df7ng"]
 
 [node name="Space" type="Node2D"]
 
@@ -10,9 +18,13 @@
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="NebulaBlue" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(1401, 1695)
-texture = ExtResource("1_xp0eu")
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = -598.0
+offset_top = -512.0
+offset_right = 877.0
+offset_bottom = 746.0
+texture = ExtResource("1_qv12b")
+stretch_mode = 1
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_6mlfo")]
 position = Vector2(123.295, 107.231)
@@ -30,3 +42,23 @@ position = Vector2(224.685, 253.171)
 
 [node name="Asteroid5" parent="." instance=ExtResource("3_tsrvc")]
 position = Vector2(3.22725, 179.978)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(111, 597)
+shape = SubResource("WorldBoundaryShape2D_u55q4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(121, -366)
+rotation = 3.13064
+shape = SubResource("WorldBoundaryShape2D_u55q4")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-501, 31)
+shape = SubResource("WorldBoundaryShape2D_kdnna")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(713, 166)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_df7ng")
