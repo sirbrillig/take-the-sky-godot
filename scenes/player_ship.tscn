@@ -5,9 +5,9 @@
 [sub_resource type="GDScript" id="GDScript_0a6g6"]
 script/source = "extends CharacterBody2D
 
-@export var acceleration_rate: float = 10
+@export var acceleration_rate: float = 5
 @export var max_velocity: float = 60
-@export var rotation_rate: float = 0.1
+@export var rotation_rate: float = 0.06
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
@@ -20,7 +20,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed(\"ui_up\"):
 		velocity = adjust_speed_for_rotation()
 
-	move_and_slide()
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = Vector2(0,0)
 
 func adjust_speed_for_rotation():
 	return Vector2(
@@ -40,6 +42,7 @@ size = Vector2(13, 12.0457)
 
 [node name="PlayerShip" type="CharacterBody2D"]
 position = Vector2(8, -8)
+motion_mode = 1
 script = SubResource("GDScript_0a6g6")
 metadata/_edit_group_ = true
 
@@ -54,3 +57,6 @@ editor_draw_limits = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -0.0228748)
 shape = SubResource("RectangleShape2D_q0ngl")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(40, 0)
