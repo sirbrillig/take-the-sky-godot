@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpuntx3vrj4ap"]
+[gd_scene load_steps=8 format=3 uid="uid://cpuntx3vrj4ap"]
 
 [ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="1_qv12b"]
+[ext_resource type="PackedScene" uid="uid://btyhbudhn4gj1" path="res://scenes/derelict_ship.tscn" id="1_w34nk"]
 [ext_resource type="PackedScene" uid="uid://75amelshbw2u" path="res://scenes/player_ship.tscn" id="2_6mlfo"]
 [ext_resource type="PackedScene" uid="uid://s6oyhg2go8or" path="res://scenes/asteroid.tscn" id="3_tsrvc"]
 
@@ -13,6 +14,10 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_df7ng"]
 
 [node name="Space" type="Node2D"]
+
+[node name="DerelictShip" parent="." instance=ExtResource("1_w34nk")]
+position = Vector2(228, 141)
+motion_mode = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
