@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpuntx3vrj4ap"]
+
+[ext_resource type="Texture2D" uid="uid://lxflfm680oit" path="res://images/Nebula Blue.png" id="1_xp0eu"]
+[ext_resource type="PackedScene" uid="uid://75amelshbw2u" path="res://scenes/player_ship.tscn" id="2_6mlfo"]
+[ext_resource type="PackedScene" uid="uid://s6oyhg2go8or" path="res://scenes/asteroid.tscn" id="3_tsrvc"]
+
+[node name="Space" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="NebulaBlue" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1401, 1695)
+texture = ExtResource("1_xp0eu")
+
+[node name="PlayerShip" parent="." instance=ExtResource("2_6mlfo")]
+position = Vector2(123.295, 107.231)
+
+[node name="Asteroid" parent="." instance=ExtResource("3_tsrvc")]
+
+[node name="Asteroid2" parent="." instance=ExtResource("3_tsrvc")]
+position = Vector2(267.679, 24.1942)
+
+[node name="Asteroid3" parent="." instance=ExtResource("3_tsrvc")]
+position = Vector2(329.228, 165.789)
+
+[node name="Asteroid4" parent="." instance=ExtResource("3_tsrvc")]
+position = Vector2(224.685, 253.171)
+
+[node name="Asteroid5" parent="." instance=ExtResource("3_tsrvc")]
+position = Vector2(3.22725, 179.978)

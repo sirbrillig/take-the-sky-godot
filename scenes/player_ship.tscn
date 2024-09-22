@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://75amelshbw2u"]
+
+[ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
+
+[sub_resource type="GDScript" id="GDScript_0a6g6"]
+script/source = "extends CharacterBody2D
+
+@export var acceleration_rate: float = 10
+@export var max_velocity: float = 60
+@export var rotation_rate: float = 0.1
+
+enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed(\"ui_left\"):
+		rotation = adjust_rotation_for_direction(RotationDirection.COUNTERCLOCKWISE)
+	if Input.is_action_pressed(\"ui_right\"):
+		rotation = adjust_rotation_for_direction(RotationDirection.CLOCKWISE)
+		
+	if Input.is_action_pressed(\"ui_up\"):
+		velocity = adjust_speed_for_rotation()
+
+	move_and_slide()
+
+func adjust_speed_for_rotation():
+	return Vector2(
+		clampf(velocity.x + acceleration_rate * cos(rotation), -max_velocity, max_velocity),
+		clampf(velocity.y + acceleration_rate * sin(rotation), -max_velocity, max_velocity),
+	)
+	
+func adjust_rotation_for_direction(dir: RotationDirection):
+	if dir == RotationDirection.COUNTERCLOCKWISE:
+		return rotation - rotation_rate
+	else:
+		return rotation + rotation_rate
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0ngl"]
+size = Vector2(13, 12.0457)
+
+[node name="PlayerShip" type="CharacterBody2D"]
+position = Vector2(8, -8)
+script = SubResource("GDScript_0a6g6")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.57079
+texture = ExtResource("1_r74qj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -0.0228748)
+shape = SubResource("RectangleShape2D_q0ngl")
