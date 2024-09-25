@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgpla08d50tuu"]
+
+[ext_resource type="Script" path="res://scenes/space.gd" id="1_0jcnw"]
+[ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="1_35m2g"]
+[ext_resource type="PackedScene" uid="uid://75amelshbw2u" path="res://scenes/player_ship.tscn" id="2_remfs"]
+[ext_resource type="PackedScene" uid="uid://c4o1wt1r3jfrt" path="res://scenes/hud.tscn" id="3_5u47w"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_easxv"]
+distance = -1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1g1hn"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7mg7p"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_0jcnw")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0, 0.402609, 0.372161, 1)
+offset_left = -598.0
+offset_top = -512.0
+offset_right = 877.0
+offset_bottom = 746.0
+texture = ExtResource("1_35m2g")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerShip" parent="." instance=ExtResource("2_remfs")]
+position = Vector2(44.6458, 43.0873)
+
+[node name="WorldBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(113, 588)
+shape = SubResource("WorldBoundaryShape2D_easxv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(121, -366)
+rotation = 3.13064
+shape = SubResource("WorldBoundaryShape2D_easxv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(-406, 44)
+shape = SubResource("WorldBoundaryShape2D_1g1hn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(643, 166)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_7mg7p")
+
+[node name="HUD" parent="." instance=ExtResource("3_5u47w")]

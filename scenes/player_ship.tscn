@@ -48,7 +48,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		Global.gold_coins += body.coins
 		body.coins = 0
 		player_coins_changed.emit()
-		
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area is Gate:
+		get_tree().change_scene_to_file(\"res://scenes/level_2.tscn\")
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3nig"]
@@ -84,4 +87,5 @@ target_position = Vector2(40, 0)
 shape = SubResource("CircleShape2D_qqneh")
 debug_color = Color(0.725734, 0.277729, 0.579432, 0.42)
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
