@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://7ru616ox3xya"]
+
+[ext_resource type="Script" path="res://scenes/enemy_fighter_ship.gd" id="1_0fxf1"]
+[ext_resource type="Texture2D" uid="uid://bsx821bdw4gii" path="res://images/tiny_ship9.png" id="1_bbknx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6sqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bbknx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3266"]
+radius = 15.0
+
+[node name="EnemyFighterShip" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_0fxf1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o6sqq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f3266")
