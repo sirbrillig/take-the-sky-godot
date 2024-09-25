@@ -27,6 +27,7 @@ motion_mode = 1
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.334572, 0.353057, 0.325371, 1)
 offset_left = -598.0
 offset_top = -512.0
 offset_right = 877.0
@@ -37,9 +38,6 @@ stretch_mode = 1
 [node name="PlayerShip" parent="." instance=ExtResource("2_6mlfo")]
 position = Vector2(123.295, 107.231)
 wall_min_slide_angle = 2.33525
-acceleration_rate = null
-max_velocity = null
-rotation_rate = null
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 
