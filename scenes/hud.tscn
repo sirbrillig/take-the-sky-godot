@@ -5,12 +5,29 @@
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_7r1fb")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
+[node name="HealthMeter" type="CanvasGroup" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="HealthMeter"]
+offset_right = 103.0
 offset_bottom = 23.0
 text = "Player health"
 
-[node name="PlayerHealth" type="Label" parent="."]
+[node name="PlayerHealth" type="Label" parent="HealthMeter"]
+offset_left = 112.0
+offset_right = 152.0
+offset_bottom = 23.0
+
+[node name="CoinMeter" type="CanvasGroup" parent="."]
+position = Vector2(0, 23)
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CoinMeter"]
+offset_right = 103.0
+offset_bottom = 23.0
+text = "Coins"
+
+[node name="Coins" type="Label" parent="CoinMeter"]
 offset_left = 112.0
 offset_right = 152.0
 offset_bottom = 23.0

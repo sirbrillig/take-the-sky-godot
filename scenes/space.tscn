@@ -153,3 +153,6 @@ position = Vector2(213, -225)
 position = Vector2(-68, -253)
 
 [node name="HUD" parent="." instance=ExtResource("2_77shx")]
+
+[connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
+[connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]
