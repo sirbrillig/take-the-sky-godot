@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c5m1e0rekbp8k" path="res://images/derelict_ship1.png" id="1_so0ar"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu5s6"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_84cth"]
 
 [node name="DerelictShip" type="CharacterBody2D"]
 
@@ -11,4 +11,4 @@ rotation = 0.6353
 texture = ExtResource("1_so0ar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yu5s6")
+shape = SubResource("CircleShape2D_84cth")

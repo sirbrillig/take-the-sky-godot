@@ -361,8 +361,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6vgr"]
-size = Vector2(55, 53)
+[sub_resource type="CircleShape2D" id="CircleShape2D_rukvi"]
+radius = 26.5421
 
 [node name="Asteroid" type="CharacterBody2D"]
 motion_mode = 1
@@ -374,4 +374,4 @@ sprite_frames = SubResource("SpriteFrames_m4v3m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.50033, -1.49989)
 rotation = 0.000222434
-shape = SubResource("RectangleShape2D_t6vgr")
+shape = SubResource("CircleShape2D_rukvi")

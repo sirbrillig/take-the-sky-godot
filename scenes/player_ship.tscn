@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=5 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
 
@@ -35,15 +35,26 @@ func adjust_rotation_for_direction(dir: RotationDirection):
 		return rotation - rotation_rate
 	else:
 		return rotation + rotation_rate
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Asteroid:
+		Global.player_health -= 1
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0ngl"]
-size = Vector2(13, 12.0457)
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3nig"]
+radius = 8.50003
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqneh"]
+radius = 11.0
 
 [node name="PlayerShip" type="CharacterBody2D"]
 position = Vector2(8, -8)
 motion_mode = 1
 script = SubResource("GDScript_0a6g6")
+acceleration_rate = null
+max_velocity = null
+rotation_rate = null
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -56,7 +67,15 @@ editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -0.0228748)
-shape = SubResource("RectangleShape2D_q0ngl")
+shape = SubResource("CircleShape2D_c3nig")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(40, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qqneh")
+debug_color = Color(0.725734, 0.277729, 0.579432, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

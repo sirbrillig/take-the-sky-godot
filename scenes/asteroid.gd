@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Asteroid
 
 var min_x = -10
 var min_y = -10
