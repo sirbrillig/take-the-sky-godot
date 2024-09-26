@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/space.gd" id="1_wfev5"]
 [ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="2_evayv"]
+[ext_resource type="PackedScene" uid="uid://7ru616ox3xya" path="res://scenes/enemy_fighter_ship.tscn" id="2_ququ6"]
 [ext_resource type="PackedScene" uid="uid://75amelshbw2u" path="res://scenes/player_ship.tscn" id="3_qcrya"]
-[ext_resource type="PackedScene" uid="uid://7ru616ox3xya" path="res://scenes/enemy_fighter_ship.tscn" id="4_58ker"]
 [ext_resource type="PackedScene" uid="uid://s6oyhg2go8or" path="res://scenes/asteroid.tscn" id="4_wlegp"]
 [ext_resource type="PackedScene" uid="uid://btyhbudhn4gj1" path="res://scenes/derelict_ship.tscn" id="5_e1if5"]
 [ext_resource type="PackedScene" uid="uid://c4o1wt1r3jfrt" path="res://scenes/hud.tscn" id="6_jrv2p"]
@@ -19,6 +19,7 @@ normal = Vector2(1, 0)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_wfev5")
+enemy_ship = ExtResource("2_ququ6")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -160,11 +161,8 @@ motion_mode = 1
 [node name="Gate" parent="." instance=ExtResource("7_6oipc")]
 position = Vector2(548.672, 369.892)
 
-[node name="EnemyFighterShip" parent="." instance=ExtResource("4_58ker")]
-position = Vector2(-39, 94)
-
-[node name="EnemyFighterShip2" parent="." instance=ExtResource("4_58ker")]
-position = Vector2(-48, 50)
+[node name="EnemyShipSpawnPoint" type="Node2D" parent="."]
+position = Vector2(-32, 104)
 
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]
