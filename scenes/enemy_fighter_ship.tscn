@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://7ru616ox3xya"]
+[gd_scene load_steps=6 format=3 uid="uid://7ru616ox3xya"]
 
 [ext_resource type="Script" path="res://scenes/enemy_fighter_ship.gd" id="1_0fxf1"]
 [ext_resource type="Texture2D" uid="uid://bsx821bdw4gii" path="res://images/tiny_ship9.png" id="1_bbknx"]
+[ext_resource type="PackedScene" uid="uid://cgpsc7cdgwyx4" path="res://scenes/bolt.tscn" id="2_tahh0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6sqq"]
 animations = [{
@@ -20,6 +21,7 @@ radius = 15.0
 [node name="EnemyFighterShip" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_0fxf1")
+bolt = ExtResource("2_tahh0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.57079
@@ -27,3 +29,8 @@ sprite_frames = SubResource("SpriteFrames_o6sqq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f3266")
+
+[node name="BoltTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="BoltTimer" to="." method="_on_bolt_timer_timeout"]
