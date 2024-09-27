@@ -5,11 +5,10 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5r6js"]
 radius = 4.0
-height = 10.0
+height = 26.0
 
-[node name="Bolt" type="CharacterBody2D"]
+[node name="Bolt" type="CharacterBody2D" groups=["Bolts"]]
 collision_layer = 4
-collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_0wxfj")
 

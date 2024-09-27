@@ -40,11 +40,13 @@ func adjust_rotation_for_direction(dir: RotationDirection):
 	else:
 		return rotation + rotation_rate
 
+func _on_player_hit():
+	Global.player_health -= 1
+	player_health_changed.emit()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Asteroid:
-		Global.player_health -= 1
-		player_health_changed.emit()
+		_on_player_hit()
 	if body is DerelictShip:
 		Global.gold_coins += body.coins
 		body.coins = 0
@@ -83,6 +85,7 @@ shape = SubResource("CircleShape2D_c3nig")
 target_position = Vector2(40, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_qqneh")

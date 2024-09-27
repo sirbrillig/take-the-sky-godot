@@ -30,9 +30,11 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 PlayerGroup=""
+Bolts=""
 
 [layer_names]
 
+2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Bolts"
 
 [rendering]

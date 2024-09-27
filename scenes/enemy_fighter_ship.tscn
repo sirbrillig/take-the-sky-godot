@@ -19,6 +19,8 @@ animations = [{
 radius = 15.0
 
 [node name="EnemyFighterShip" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_0fxf1")
 bolt = ExtResource("2_tahh0")

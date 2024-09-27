@@ -45,8 +45,7 @@ func fire_bolt():
 	var bolt = bolt.instantiate() as CharacterBody2D
 	bolt.global_position = Vector2(global_position.x, global_position.y)
 	bolt.look_at(chasing_player.global_position)
-	var bolt_speed = 2
-	bolt.velocity = Vector2(bolt_speed * cos(rotation), bolt_speed * sin(rotation))
+	bolt.velocity = Vector2(bolt.speed * cos(rotation), bolt.speed * sin(rotation))
 	get_parent().add_child(bolt)
 
 func _on_bolt_timer_timeout() -> void:
