@@ -79,7 +79,7 @@ position = Vector2(228, 141)
 
 [node name="HUD" parent="." instance=ExtResource("6_jrv2p")]
 
-[node name="Gate" parent="." instance=ExtResource("7_6oipc")]
+[node name="Gate" parent="." groups=["Gates"] instance=ExtResource("7_6oipc")]
 position = Vector2(576, 528)
 
 [node name="AsteroidArea" type="Area2D" parent="."]

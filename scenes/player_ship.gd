@@ -10,12 +10,28 @@ signal player_coins_changed
 @export var post_hit_invincibility: float = 1.0
 
 var is_being_hit: bool = false
+var gate_arrow_angle: float = 0.0
+var gate_arrow_radius = 50
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
 func _physics_process(_delta: float) -> void:
 	_handle_movement()
 	move_and_slide()
+
+func _process(_delta: float) -> void:
+	_draw_gate_arrow()
+
+func _draw_gate_arrow():
+	var gates = get_tree().get_nodes_in_group("Gates")
+	if gates.size() < 1:
+		return
+	var gate = gates[0]
+	gate_arrow_angle = position.angle_to_point(gate.position)
+	var x_pos = cos(gate_arrow_angle - rotation)
+	var y_pos = sin(gate_arrow_angle - rotation)
+	$GateArrow.position.x = gate_arrow_radius * x_pos
+	$GateArrow.position.y = gate_arrow_radius * y_pos
 
 func _handle_movement():
 	$EngineSprite.visible = false

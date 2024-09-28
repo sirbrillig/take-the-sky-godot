@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=10 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Script" path="res://scenes/player_ship.gd" id="1_2oq58"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
 [ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
 [ext_resource type="Shader" path="res://scenes/player_ship.gdshader" id="3_c1x3q"]
+[ext_resource type="Texture2D" uid="uid://bpywstpji1wv5" path="res://images/menu-icons-white.png" id="5_xmv7i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4cuvq"]
 shader = ExtResource("3_c1x3q")
@@ -15,6 +16,10 @@ radius = 8.50003
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqneh"]
 radius = 11.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btp4v"]
+atlas = ExtResource("5_xmv7i")
+region = Rect2(67, 0, 11, 11)
 
 [node name="PlayerShip" type="CharacterBody2D" groups=["PlayerGroup"]]
 position = Vector2(8, -8)
@@ -53,6 +58,10 @@ collision_mask = 62
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_qqneh")
 debug_color = Color(0.725734, 0.277729, 0.579432, 0.42)
+
+[node name="GateArrow" type="Sprite2D" parent="."]
+position = Vector2(48, 0)
+texture = SubResource("AtlasTexture_btp4v")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
