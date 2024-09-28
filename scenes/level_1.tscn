@@ -28,7 +28,7 @@ size = Vector2(18, 68.5)
 script = ExtResource("1_wfev5")
 enemy_ship = ExtResource("2_ququ6")
 asteroid = ExtResource("4_wlegp")
-too_close_distance = 80.0
+too_close_distance = 180.0
 
 [node name="DialogueControl" type="Node" parent="."]
 script = ExtResource("10_cw0t2")
