@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciby07tnsa21p"]
 
-[ext_resource type="Script" path="res://scenes/dialog.gd" id="1_e1l17"]
+[ext_resource type="Script" path="res://scenes/dialog_box.gd" id="1_e1l17"]
 [ext_resource type="Texture2D" uid="uid://btbngj8ldkrub" path="res://images/Panel_3.png" id="1_ugga5"]
 
-[node name="Dialog" type="CanvasLayer"]
+[node name="DialogBox" type="CanvasLayer"]
 process_mode = 3
+layer = 3
 script = ExtResource("1_e1l17")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

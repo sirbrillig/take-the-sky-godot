@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_7r1fb"]
 
 [node name="HUD" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_7r1fb")
 
 [node name="HealthMeter" type="CanvasGroup" parent="."]
