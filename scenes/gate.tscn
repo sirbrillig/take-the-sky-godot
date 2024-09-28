@@ -365,6 +365,8 @@ animations = [{
 height = 66.6032
 
 [node name="Gate" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
 script = ExtResource("1_qdrhq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
