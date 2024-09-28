@@ -10,6 +10,7 @@ class_name EnemyFighterShip
 
 @export var bolt: PackedScene
 
+var _is_dying: bool = false
 var chasing_player: CharacterBody2D
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
@@ -17,6 +18,8 @@ enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 var facing_direction: float = 0
 
 func _physics_process(delta: float) -> void:
+	if _is_dying:
+		return
 	var players = get_tree().get_nodes_in_group("PlayerGroup")
 	if players[0]:
 		chasing_player = players[0]
@@ -25,8 +28,9 @@ func _physics_process(delta: float) -> void:
 		call_deferred("explode")
 		
 func explode():
-	#TODO: make an explosion
-	queue_free()
+	_is_dying = true
+	$AnimatedSprite2D.visible = false
+	$Explosion.restart()
 
 func chase_player(player: CharacterBody2D, delta: float):
 	if position.distance_to(player.position) > stop_chasing_distance_near:
@@ -67,10 +71,18 @@ func _on_bolt_timer_timeout() -> void:
 
 
 func _on_bold_charging_timer_timeout() -> void:
+	if _is_dying:
+		return
 	$BoltCharging.emitting = false
 	fire_bolt()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if _is_dying:
+		return
 	if body is Asteroid:
 		hit_points -= 1
+
+
+func _on_explosion_finished() -> void:
+	queue_free()

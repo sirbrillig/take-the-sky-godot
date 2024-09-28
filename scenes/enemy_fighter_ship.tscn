@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7ru616ox3xya"]
+[gd_scene load_steps=10 format=3 uid="uid://7ru616ox3xya"]
 
 [ext_resource type="Script" path="res://scenes/enemy_fighter_ship.gd" id="1_0fxf1"]
 [ext_resource type="Texture2D" uid="uid://bsx821bdw4gii" path="res://images/tiny_ship9.png" id="1_bbknx"]
@@ -20,6 +20,23 @@ radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn638"]
 radius = 20.0
+
+[sub_resource type="Curve" id="Curve_ju84o"]
+_data = [Vector2(0.0198676, 1), 0.0, -1.22251, 0, 1, Vector2(0.60596, 0.283493), -0.601853, -0.601853, 0, 0, Vector2(0.980132, 0.125495), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u2jyx"]
+curve = SubResource("Curve_ju84o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wod5w"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+radial_velocity_min = -64.5
+radial_velocity_max = 126.77
+radial_velocity_curve = SubResource("CurveTexture_u2jyx")
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+color = Color(0.976471, 0.941176, 0.00784314, 1)
 
 [node name="EnemyFighterShip" type="CharacterBody2D"]
 collision_layer = 2
@@ -48,6 +65,7 @@ rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_o6sqq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_f3266")
 
 [node name="BoltTimer" type="Timer" parent="."]
@@ -59,6 +77,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 9
 
@@ -66,6 +85,15 @@ collision_mask = 9
 shape = SubResource("CircleShape2D_hn638")
 debug_color = Color(0.804688, 0.0597229, 0.0597229, 0.42)
 
+[node name="Explosion" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 90
+process_material = SubResource("ParticleProcessMaterial_wod5w")
+lifetime = 1.4
+one_shot = true
+explosiveness = 1.0
+
 [connection signal="timeout" from="BoltTimer" to="." method="_on_bolt_timer_timeout"]
 [connection signal="timeout" from="BoldChargingTimer" to="." method="_on_bold_charging_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="Explosion" to="." method="_on_explosion_finished"]
