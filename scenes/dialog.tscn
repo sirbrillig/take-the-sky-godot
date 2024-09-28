@@ -11,7 +11,7 @@ script = ExtResource("1_e1l17")
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 232.0
-offset_bottom = 128.0
+offset_bottom = 104.0
 texture = ExtResource("1_ugga5")
 patch_margin_left = 5
 patch_margin_top = 5
@@ -22,9 +22,9 @@ axis_stretch_vertical = 2
 
 [node name="TextArea" type="RichTextLabel" parent="."]
 offset_left = 24.0
-offset_top = 16.0
+offset_top = 24.0
 offset_right = 216.0
-offset_bottom = 120.0
+offset_bottom = 88.0
 theme_override_font_sizes/normal_font_size = 10
 theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
