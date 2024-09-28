@@ -8,6 +8,7 @@ extends Node2D
 @export var speaker1: Color
 @export var speaker2: Color
 @export var speaker3: Color
+@export var speaker4: Color
 
 @export var dialog: PackedScene
 
@@ -47,6 +48,7 @@ func _on_player_ship_player_coins_changed() -> void:
 	if ! have_enemies_activated:
 		have_enemies_activated = true
 		activate_enemy_ships()
+		start_dialogue("searching ship")
 
 func gen_random_pos(orig, area) -> Vector2:
 	var x = randf_range(orig.x, area.x)
@@ -68,10 +70,20 @@ func get_speaker_color(speaker: String) -> String:
 	match speaker:
 		"Yard":
 			return speaker1.to_html()
+		"Dash":
+			return speaker4.to_html()
 		"Capt":
 			return speaker2.to_html()
 		_:
 			return speaker3.to_html()
+
+func start_dialogue(block: String) -> void:
+	clyde.start(block)
+	panel = dialog.instantiate() as Dialog
+	panel.dialog_done.connect(_on_convo_continues)
+	get_tree().paused = true
+	add_child(panel)
+	_on_convo_continues()
 
 func _on_convo_1_timer_timeout() -> void:
 	clyde = ClydeDialogue.new()

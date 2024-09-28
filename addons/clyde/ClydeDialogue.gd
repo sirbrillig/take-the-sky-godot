@@ -199,4 +199,3 @@ func _get_source_folder() -> String:
 func _config_id_suffix_lookup_separator() -> String:
 	var lookup_separator = ProjectSettings.get_setting("dialogue/id_suffix_lookup_separator") if ProjectSettings.has_setting("dialogue/id_suffix_lookup_separator") else null
 	return lookup_separator if lookup_separator else "&"
-
