@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 func activate_enemy_ships():
 	for n in 2:
 		var enemy = enemy_ship.instantiate()
-		enemy.position = gen_random_pos(origin, spawnArea)
+		enemy.position = gen_random_pos(enemyOrigin, enemyArea)
 		call_deferred("add_child", enemy)
 
 func _on_player_ship_player_health_changed() -> void:
