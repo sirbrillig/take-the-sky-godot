@@ -6,7 +6,10 @@ extends Node2D
 @export var enemy_ship_count: int = 2
 @export var too_close_distance: float = 70
 
+@export var dialog: PackedScene
+
 var have_enemies_activated: bool = false
+var panel: Dialog
 
 @onready var asteroidArea = $AsteroidArea/AsteroidAreaRect.shape.extents
 @onready var asteroidOrigin = $AsteroidArea/AsteroidAreaRect.global_position -  asteroidArea
@@ -56,3 +59,14 @@ func create_asteroids() -> void:
 		var direction = randf_range(0, 2 * PI)
 		rock.rotation = direction
 		add_child(rock)
+
+func _on_convo_1_timer_timeout() -> void:
+	panel = dialog.instantiate() as Dialog
+	panel.set_text("Hey, boss")
+	panel.dialog_done.connect(_on_convo_2)
+	get_tree().paused = true
+	add_child(panel)
+
+func _on_convo_2() -> void:
+	panel.queue_free()
+	get_tree().paused = false
