@@ -9,7 +9,7 @@ height = 26.0
 
 [node name="Bolt" type="CharacterBody2D" groups=["Bolts"]]
 collision_layer = 4
-collision_mask = 11
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_0wxfj")
 
