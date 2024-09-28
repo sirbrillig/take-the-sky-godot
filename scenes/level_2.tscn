@@ -60,10 +60,10 @@ shape = SubResource("WorldBoundaryShape2D_7mg7p")
 
 [node name="HUD" parent="." instance=ExtResource("3_5u47w")]
 
-[node name="LevelArea" type="Area2D" parent="."]
+[node name="AsteroidArea" type="Area2D" parent="."]
 monitoring = false
 monitorable = false
 
-[node name="LevelAreaRect" type="CollisionShape2D" parent="LevelArea"]
+[node name="AsteroidAreaRect" type="CollisionShape2D" parent="AsteroidArea"]
 position = Vector2(120, 124)
 shape = SubResource("RectangleShape2D_qc4lk")

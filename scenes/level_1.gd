@@ -2,11 +2,14 @@ extends Node2D
 
 @export var enemy_ship: PackedScene
 @export var asteroid: PackedScene
+@export var asteroid_count: int = 40
+@export var enemy_ship_count: int = 2
+@export var too_close_distance: float = 70
 
 var have_enemies_activated: bool = false
 
-@onready var spawnArea = $LevelArea/LevelAreaRect.shape.extents
-@onready var origin = $LevelArea/LevelAreaRect.global_position -  spawnArea
+@onready var asteroidArea = $AsteroidArea/AsteroidAreaRect.shape.extents
+@onready var asteroidOrigin = $AsteroidArea/AsteroidAreaRect.global_position -  asteroidArea
 @onready var enemyArea = $EnemyShipSpawnArea/EnemyShipSpawnRect.shape.extents
 @onready var enemyOrigin = $EnemyShipSpawnArea/EnemyShipSpawnRect.global_position -  enemyArea
 
@@ -23,7 +26,7 @@ func _process(_delta: float) -> void:
 	
 	
 func activate_enemy_ships():
-	for n in 2:
+	for n in enemy_ship_count:
 		var enemy = enemy_ship.instantiate()
 		enemy.position = gen_random_pos(enemyOrigin, enemyArea)
 		call_deferred("add_child", enemy)
@@ -44,9 +47,11 @@ func gen_random_pos(orig, area) -> Vector2:
 	return Vector2(x, y)
 	
 func create_asteroids() -> void:
-	for n in 55:
+	for n in asteroid_count:
 		var rock = asteroid.instantiate() as Asteroid
-		var rock_spawn_location = gen_random_pos(origin, spawnArea)
+		var rock_spawn_location = gen_random_pos(asteroidOrigin, asteroidArea)
+		while rock_spawn_location.distance_to($PlayerShip.position) < too_close_distance:
+			rock_spawn_location = gen_random_pos(asteroidOrigin, asteroidArea)
 		rock.position = rock_spawn_location
 		var direction = randf_range(0, 2 * PI)
 		rock.rotation = direction

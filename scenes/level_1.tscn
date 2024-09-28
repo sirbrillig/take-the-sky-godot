@@ -75,13 +75,13 @@ motion_mode = 1
 [node name="Gate" parent="." instance=ExtResource("7_6oipc")]
 position = Vector2(576, 528)
 
-[node name="LevelArea" type="Area2D" parent="."]
+[node name="AsteroidArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="LevelAreaRect" type="CollisionShape2D" parent="LevelArea"]
+[node name="AsteroidAreaRect" type="CollisionShape2D" parent="AsteroidArea"]
 position = Vector2(141.5, 121.5)
 shape = SubResource("RectangleShape2D_4jgxc")
 
