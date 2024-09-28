@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpuntx3vrj4ap"]
+[gd_scene load_steps=13 format=3 uid="uid://cpuntx3vrj4ap"]
 
-[ext_resource type="Script" path="res://scenes/space.gd" id="1_wfev5"]
+[ext_resource type="Script" path="res://scenes/level_1.gd" id="1_wfev5"]
 [ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="2_evayv"]
 [ext_resource type="PackedScene" uid="uid://7ru616ox3xya" path="res://scenes/enemy_fighter_ship.tscn" id="2_ququ6"]
 [ext_resource type="PackedScene" uid="uid://75amelshbw2u" path="res://scenes/player_ship.tscn" id="3_qcrya"]
@@ -17,9 +17,13 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_df7ng"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jgxc"]
+size = Vector2(1333, 1149)
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_wfev5")
 enemy_ship = ExtResource("2_ququ6")
+asteroid = ExtResource("4_wlegp")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -59,99 +63,6 @@ position = Vector2(643, 166)
 rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_df7ng")
 
-[node name="Asteroids" type="CanvasGroup" parent="."]
-
-[node name="Asteroid" parent="Asteroids" instance=ExtResource("4_wlegp")]
-
-[node name="Asteroid2" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(267.679, 24.1942)
-rotation = -0.6353
-
-[node name="Asteroid21" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(513, 94)
-rotation = 2.2218
-
-[node name="Asteroid22" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(544, -96)
-
-[node name="Asteroid3" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(329.228, 165.789)
-
-[node name="Asteroid23" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(448, 187)
-rotation = 0.445059
-
-[node name="Asteroid4" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(224.685, 253.171)
-rotation = -1.26885
-
-[node name="Asteroid14" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(347, 373)
-rotation = 2.2218
-
-[node name="Asteroid24" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(468, 346)
-rotation = 1.71391
-
-[node name="Asteroid15" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(72, 487)
-rotation = -0.570723
-
-[node name="Asteroid16" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(313, 537)
-rotation = 1.39626
-
-[node name="Asteroid5" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(3.22725, 179.978)
-rotation = -1.39626
-
-[node name="Asteroid25" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(94, 44)
-rotation = 0.507891
-
-[node name="Asteroid6" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(-88, 130)
-rotation = -2.60229
-
-[node name="Asteroid7" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(-173, 38)
-rotation = 2.47488
-
-[node name="Asteroid20" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(-320, 94)
-
-[node name="Asteroid19" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(-254, -136)
-rotation = -0.261799
-
-[node name="Asteroid8" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(-184, 263)
-rotation = 1.4591
-
-[node name="Asteroid17" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(-215, 388)
-rotation = 0.445059
-
-[node name="Asteroid18" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(11, 323)
-
-[node name="Asteroid9" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(163, -26)
-
-[node name="Asteroid10" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(44, -117)
-rotation = 0.570723
-
-[node name="Asteroid11" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(263, -117)
-rotation = 3.23759
-
-[node name="Asteroid12" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(213, -225)
-
-[node name="Asteroid13" parent="Asteroids" instance=ExtResource("4_wlegp")]
-position = Vector2(-68, -253)
-
 [node name="DerelictShip" parent="." instance=ExtResource("5_e1if5")]
 position = Vector2(228, 141)
 motion_mode = 1
@@ -159,10 +70,20 @@ motion_mode = 1
 [node name="HUD" parent="." instance=ExtResource("6_jrv2p")]
 
 [node name="Gate" parent="." instance=ExtResource("7_6oipc")]
-position = Vector2(548.672, 369.892)
+position = Vector2(576, 528)
 
 [node name="EnemyShipSpawnPoint" type="Node2D" parent="."]
 position = Vector2(-32, 104)
+
+[node name="LevelArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="LevelAreaRect" type="CollisionShape2D" parent="LevelArea"]
+position = Vector2(141.5, 121.5)
+shape = SubResource("RectangleShape2D_4jgxc")
 
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]
