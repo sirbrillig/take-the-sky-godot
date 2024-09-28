@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 		
 func explode():
 	_is_dying = true
+	$BoltCharging.emitting = false
 	$AnimatedSprite2D.visible = false
 	$Explosion.restart()
 
@@ -61,6 +62,8 @@ func fire_bolt():
 	get_parent().add_child(new_bolt)
 
 func _on_bolt_timer_timeout() -> void:
+	if _is_dying:
+		return
 	if ! chasing_player:
 		return
 	if $BoltCharging.emitting:
