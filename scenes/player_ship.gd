@@ -7,10 +7,20 @@ signal player_coins_changed
 @export var acceleration_rate: float = 0.8
 @export var max_velocity: float = 40
 @export var rotation_rate: float = 0.03
+@export var post_hit_invincibility: float = 1.0
+
+var is_being_hit: bool = false
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
 func _physics_process(_delta: float) -> void:
+	_handle_movement()
+	move_and_slide()
+
+func _handle_movement():
+	$EngineSprite.visible = false
+	if is_being_hit:
+		return
 	if Input.is_action_pressed("ui_left"):
 		rotation = adjust_rotation_for_direction(RotationDirection.COUNTERCLOCKWISE)
 	if Input.is_action_pressed("ui_right"):
@@ -19,10 +29,6 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_up"):
 		velocity = adjust_speed_for_rotation()
 		$EngineSprite.visible = true
-	else:
-		$EngineSprite.visible = false
-
-	move_and_slide()
 
 func adjust_speed_for_rotation():
 	return Vector2(
@@ -46,12 +52,23 @@ func _knockback(angle_of_hit: float):
 	rotation = current_rotation
 	acceleration_rate = current_acceleration_rate
 
+func _flash_from_hit():
+	$ShipSprite.material.set_shader_parameter("alpha", 1)
+	await get_tree().create_timer(0.05).timeout
+	$ShipSprite.material.set_shader_parameter("alpha", 0)
+
 func _on_player_hit(angle_of_hit: float):
+	is_being_hit = true
+	_flash_from_hit()
 	_knockback(angle_of_hit)
 	Global.player_health -= 1
 	player_health_changed.emit()
+	await get_tree().create_timer(post_hit_invincibility).timeout
+	is_being_hit = false
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	if is_being_hit:
+		return
 	if body is Asteroid:
 		var angle_of_hit: float = body.position.angle_to_point(position)
 		_on_player_hit(angle_of_hit)
