@@ -22,12 +22,13 @@ normal = Vector2(1, 0)
 size = Vector2(1333, 1149)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqo8n"]
-size = Vector2(18, 105)
+size = Vector2(18, 68.5)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_wfev5")
 enemy_ship = ExtResource("2_ququ6")
 asteroid = ExtResource("4_wlegp")
+too_close_distance = 80.0
 
 [node name="DialogueControl" type="Node" parent="."]
 script = ExtResource("10_cw0t2")
@@ -97,7 +98,7 @@ monitoring = false
 monitorable = false
 
 [node name="EnemyShipSpawnRect" type="CollisionShape2D" parent="EnemyShipSpawnArea"]
-position = Vector2(-32, 60.5)
+position = Vector2(72, 72)
 shape = SubResource("RectangleShape2D_wqo8n")
 debug_color = Color(0.924474, 0.0234675, 0.670807, 0.42)
 
