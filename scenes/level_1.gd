@@ -7,6 +7,8 @@ var have_enemies_activated: bool = false
 
 @onready var spawnArea = $LevelArea/LevelAreaRect.shape.extents
 @onready var origin = $LevelArea/LevelAreaRect.global_position -  spawnArea
+@onready var enemyArea = $EnemyShipSpawnArea/EnemyShipSpawnRect.shape.extents
+@onready var enemyOrigin = $EnemyShipSpawnArea/EnemyShipSpawnRect.global_position -  enemyArea
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,15 +18,15 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 	
 func activate_enemy_ships():
-	for n in 3:
+	for n in 2:
 		var enemy = enemy_ship.instantiate()
-		enemy.position = $EnemyShipSpawnPoint.position + Vector2(randf_range(10, 20), randf_range(10, 20))
-		add_child(enemy)
+		enemy.position = gen_random_pos(origin, spawnArea)
+		call_deferred("add_child", enemy)
 
 func _on_player_ship_player_health_changed() -> void:
 	$HUD.update_health(Global.player_health)
@@ -36,15 +38,15 @@ func _on_player_ship_player_coins_changed() -> void:
 		have_enemies_activated = true
 		activate_enemy_ships()
 
-func gen_random_pos() -> Vector2:
-	var x = randf_range(origin.x, spawnArea.x)
-	var y = randf_range(origin.y, spawnArea.y)
+func gen_random_pos(orig, area) -> Vector2:
+	var x = randf_range(orig.x, area.x)
+	var y = randf_range(orig.y, area.y)
 	return Vector2(x, y)
 	
 func create_asteroids() -> void:
-	for n in 50:
+	for n in 55:
 		var rock = asteroid.instantiate() as Asteroid
-		var rock_spawn_location = gen_random_pos()
+		var rock_spawn_location = gen_random_pos(origin, spawnArea)
 		rock.position = rock_spawn_location
 		var direction = randf_range(0, 2 * PI)
 		rock.rotation = direction

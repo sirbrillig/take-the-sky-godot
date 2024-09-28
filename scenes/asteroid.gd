@@ -10,5 +10,5 @@ func _ready() -> void:
 	$AnimatedSprite2D.play()
 	velocity = Vector2(randf_range(min_x, max_x), randf_range(min_y, max_y))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()

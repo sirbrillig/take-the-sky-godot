@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpuntx3vrj4ap"]
+[gd_scene load_steps=14 format=3 uid="uid://cpuntx3vrj4ap"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_wfev5"]
 [ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="2_evayv"]
@@ -19,6 +19,9 @@ normal = Vector2(1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jgxc"]
 size = Vector2(1333, 1149)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqo8n"]
+size = Vector2(18, 105)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_wfev5")
@@ -72,9 +75,6 @@ motion_mode = 1
 [node name="Gate" parent="." instance=ExtResource("7_6oipc")]
 position = Vector2(576, 528)
 
-[node name="EnemyShipSpawnPoint" type="Node2D" parent="."]
-position = Vector2(-32, 104)
-
 [node name="LevelArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
@@ -84,6 +84,15 @@ monitorable = false
 [node name="LevelAreaRect" type="CollisionShape2D" parent="LevelArea"]
 position = Vector2(141.5, 121.5)
 shape = SubResource("RectangleShape2D_4jgxc")
+
+[node name="EnemyShipSpawnArea" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="EnemyShipSpawnRect" type="CollisionShape2D" parent="EnemyShipSpawnArea"]
+position = Vector2(-32, 60.5)
+shape = SubResource("RectangleShape2D_wqo8n")
+debug_color = Color(0.924474, 0.0234675, 0.670807, 0.42)
 
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]

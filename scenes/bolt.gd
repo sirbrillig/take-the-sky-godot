@@ -3,9 +3,9 @@ class_name Bolt
 
 signal hit_something
 
-@export var speed: float = 4.5
+@export var speed: float = 4.0
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var collision = move_and_collide(velocity)
 	if collision != null:
 		if (collision.get_collider().name == 'PlayerShip'):

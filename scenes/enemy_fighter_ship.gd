@@ -2,10 +2,10 @@ extends CharacterBody2D
 class_name EnemyFighterShip
 
 @export var hit_points: int = 1
-@export var stop_chasing_distance_near: int = 40
-@export var firing_range_max: float = 200
-@export var acceleration_rate: float = 3
-@export var max_velocity: float = 40
+@export var stop_chasing_distance_near: int = 50
+@export var firing_range_max: float = 100
+@export var acceleration_rate: float = 0.9
+@export var max_velocity: float = 35
 @export var rotation_rate: float = 0.06 # TODO use this
 
 @export var bolt: PackedScene
@@ -42,14 +42,22 @@ func adjust_rotation_for_direction(dir: RotationDirection):
 		return rotation + rotation_rate
 
 func fire_bolt():
-	var bolt = bolt.instantiate() as CharacterBody2D
-	bolt.global_position = Vector2(global_position.x, global_position.y)
-	bolt.look_at(chasing_player.global_position)
-	bolt.velocity = Vector2(bolt.speed * cos(rotation), bolt.speed * sin(rotation))
-	get_parent().add_child(bolt)
+	var new_bolt = bolt.instantiate() as CharacterBody2D
+	new_bolt.global_position = Vector2(global_position.x, global_position.y)
+	new_bolt.look_at(chasing_player.global_position)
+	new_bolt.velocity = Vector2(new_bolt.speed * cos(rotation), new_bolt.speed * sin(rotation))
+	get_parent().add_child(new_bolt)
 
 func _on_bolt_timer_timeout() -> void:
 	if ! chasing_player:
 		return
+	if $BoltCharging.emitting:
+		return
 	if position.distance_to(chasing_player.position) < firing_range_max:
-		fire_bolt()
+		$BoldChargingTimer.start()
+		$BoltCharging.emitting = true
+
+
+func _on_bold_charging_timer_timeout() -> void:
+	$BoltCharging.emitting = false
+	fire_bolt()
