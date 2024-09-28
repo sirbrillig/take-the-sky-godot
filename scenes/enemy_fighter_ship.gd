@@ -3,16 +3,18 @@ class_name EnemyFighterShip
 
 @export var hit_points: int = 1
 @export var stop_chasing_distance_near: int = 50
-@export var firing_range_max: float = 100
-@export var acceleration_rate: float = 0.9
-@export var max_velocity: float = 35
-@export var rotation_rate: float = 0.06 # TODO use this
+@export var firing_range_max: float = 190
+@export var acceleration_rate: float = 0.95
+@export var max_velocity: float = 38
+@export var rotation_rate: float = 0.02
 
 @export var bolt: PackedScene
 
 var chasing_player: CharacterBody2D
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
+
+var facing_direction: float = 0
 
 func _physics_process(delta: float) -> void:
 	var players = get_tree().get_nodes_in_group("PlayerGroup")
@@ -22,7 +24,7 @@ func _physics_process(delta: float) -> void:
 
 func chase_player(player: CharacterBody2D, delta: float):
 	if position.distance_to(player.position) > stop_chasing_distance_near:
-		look_at(player.position)
+		rotation = lerp_angle(rotation, rotation + get_angle_to(player.position), rotation_rate)
 		velocity = adjust_speed_for_rotation()
 		move_and_collide(velocity * delta)
 	else:
