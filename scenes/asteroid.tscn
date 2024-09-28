@@ -365,6 +365,7 @@ animations = [{
 radius = 26.5421
 
 [node name="Asteroid" type="CharacterBody2D"]
+collision_layer = 8
 motion_mode = 1
 script = ExtResource("1_aj00r")
 

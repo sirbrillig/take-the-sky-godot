@@ -21,6 +21,12 @@ func _physics_process(delta: float) -> void:
 	if players[0]:
 		chasing_player = players[0]
 		chase_player(players[0], delta)
+	if hit_points <= 0:
+		call_deferred("explode")
+		
+func explode():
+	#TODO: make an explosion
+	queue_free()
 
 func chase_player(player: CharacterBody2D, delta: float):
 	if position.distance_to(player.position) > stop_chasing_distance_near:
@@ -63,3 +69,8 @@ func _on_bolt_timer_timeout() -> void:
 func _on_bold_charging_timer_timeout() -> void:
 	$BoltCharging.emitting = false
 	fire_bolt()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Asteroid:
+		hit_points -= 1

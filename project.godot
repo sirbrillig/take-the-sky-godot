@@ -38,8 +38,10 @@ Bolts=""
 
 [layer_names]
 
+2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Bolts"
+2d_physics/layer_4="Debris"
 
 [rendering]
 
