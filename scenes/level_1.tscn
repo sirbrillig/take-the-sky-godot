@@ -53,6 +53,8 @@ position = Vector2(123.295, 107.231)
 wall_min_slide_angle = 2.33525
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
+collision_layer = 64
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
 position = Vector2(113, 588)
@@ -74,7 +76,6 @@ shape = SubResource("WorldBoundaryShape2D_df7ng")
 
 [node name="DerelictShip" parent="." instance=ExtResource("5_e1if5")]
 position = Vector2(228, 141)
-motion_mode = 1
 
 [node name="HUD" parent="." instance=ExtResource("6_jrv2p")]
 

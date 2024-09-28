@@ -44,6 +44,7 @@ Bolts=""
 2d_physics/layer_4="Debris"
 2d_physics/layer_5="Gates"
 2d_physics/layer_6="Other_Ships"
+2d_physics/layer_7="Boundaries"
 
 [rendering]
 
