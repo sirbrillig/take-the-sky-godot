@@ -361,8 +361,8 @@ animations = [{
 "speed": 11.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hw5f8"]
-radius = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bebor"]
+height = 66.6032
 
 [node name="Gate" type="Area2D"]
 script = ExtResource("1_qdrhq")
@@ -373,4 +373,5 @@ frame = 45
 frame_progress = 0.718997
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_hw5f8")
+rotation = 0.850833
+shape = SubResource("CapsuleShape2D_bebor")
