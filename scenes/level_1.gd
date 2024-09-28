@@ -5,11 +5,15 @@ extends Node2D
 @export var asteroid_count: int = 40
 @export var enemy_ship_count: int = 2
 @export var too_close_distance: float = 70
+@export var speaker1: Color
+@export var speaker2: Color
+@export var speaker3: Color
 
 @export var dialog: PackedScene
 
 var have_enemies_activated: bool = false
 var panel: Dialog
+var clyde: ClydeDialogue
 
 @onready var asteroidArea = $AsteroidArea/AsteroidAreaRect.shape.extents
 @onready var asteroidOrigin = $AsteroidArea/AsteroidAreaRect.global_position -  asteroidArea
@@ -60,13 +64,38 @@ func create_asteroids() -> void:
 		rock.rotation = direction
 		add_child(rock)
 
+func get_speaker_color(speaker: String) -> String:
+	match speaker:
+		"Yard":
+			return speaker1.to_html()
+		"Capt":
+			return speaker2.to_html()
+		_:
+			return speaker3.to_html()
+
 func _on_convo_1_timer_timeout() -> void:
+	clyde = ClydeDialogue.new()
+	clyde.load_dialogue('first_convo')
+	clyde.start()
 	panel = dialog.instantiate() as Dialog
-	panel.set_text("Hey, boss")
-	panel.dialog_done.connect(_on_convo_2)
+	panel.dialog_done.connect(_on_convo_continues)
 	get_tree().paused = true
 	add_child(panel)
+	_on_convo_continues()
+	
+func _on_convo_continues() -> void:
+	var content = clyde.get_content()
+	if content.type == 'end':
+		_on_convo_complete()
+		return
+	if content.speaker:
+		var speaker_color = get_speaker_color(content.speaker)
+		panel.set_text(
+			'[color={color}]'.format({"color": speaker_color})
+			+ content.speaker + ':[/color] ' + content.text)
+	else:
+		panel.set_text(content.text)
 
-func _on_convo_2() -> void:
+func _on_convo_complete() -> void:
 	panel.queue_free()
 	get_tree().paused = false

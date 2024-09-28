@@ -28,6 +28,9 @@ size = Vector2(18, 105)
 script = ExtResource("1_wfev5")
 enemy_ship = ExtResource("2_ququ6")
 asteroid = ExtResource("4_wlegp")
+speaker1 = Color(0.964844, 0.576262, 0.0263824, 1)
+speaker2 = Color(0.132202, 0.890625, 0, 1)
+speaker3 = Color(1, 1, 1, 1)
 dialog = ExtResource("9_2eijj")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
