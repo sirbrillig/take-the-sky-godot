@@ -55,6 +55,9 @@ func _handle_movement():
 		velocity = _adjust_speed_for_rotation()
 		$EngineSprite.visible = true
 
+	if Input.is_action_pressed("ui_down"):
+		_decelerate()
+
 func _adjust_speed_for_rotation():
 	return Vector2(
 		clampf(velocity.x + acceleration_rate * cos(rotation), -max_velocity, max_velocity),
@@ -66,6 +69,15 @@ func _adjust_rotation_for_direction(dir: RotationDirection):
 		return rotation - rotation_rate
 	else:
 		return rotation + rotation_rate
+
+func _decelerate():
+	# TODO: do not decelerate past 0
+	if velocity == Vector2(0,0):
+		return
+	var current_rotation = rotation
+	rotation = rotation - PI
+	velocity = _adjust_speed_for_rotation()
+	rotation = current_rotation
 
 func _knockback(angle_of_hit: float):
 	velocity = Vector2(0,0)

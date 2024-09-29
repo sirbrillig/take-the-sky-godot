@@ -40,14 +40,19 @@ func _handle_obstacle_check():
 	if _is_dying:
 		return
 	if $ObstacleDetector1.is_colliding() || $ObstacleDetector2.is_colliding():
-		# TODO: decelerate
-		velocity = Vector2(0, 0)
+		_decelerate()
 
 func explode():
 	_is_dying = true
 	$BoltCharging.emitting = false
 	$AnimatedSprite2D.visible = false
 	$Explosion.restart()
+
+func _decelerate():
+	var current_rotation = rotation
+	rotation = rotation - PI
+	velocity = _adjust_speed_for_rotation()
+	rotation = current_rotation
 
 func _chase_player():
 	if _is_dying:
