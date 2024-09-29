@@ -5,6 +5,7 @@ class_name EnemyFighterShip
 @export var stop_chasing_distance_near: int = 50
 @export var firing_range_max: float = 190
 @export var acceleration_rate: float = 0.95
+@export var deceleration_rate: float = 1.25
 @export var max_velocity: float = 38
 @export var rotation_rate: float = 0.02
 
@@ -23,12 +24,18 @@ func _set_chasing_player():
 		chasing_player = players[0]
 
 func _physics_process(_delta: float) -> void:
+	if _is_dying:
+		move_and_slide()
+		return
 	if ! chasing_player:
 		_set_chasing_player()
 	_handle_hp_check()
-	_handle_obstacle_check()
+	if chasing_player:
+		rotation = lerp_angle(rotation, rotation + get_angle_to(chasing_player.position), rotation_rate)
+	if _is_near_obstacle():
+		_decelerate()
+		return
 	_chase_player()
-	move_and_slide()
 
 func _handle_hp_check():
 	if _is_dying:
@@ -36,11 +43,8 @@ func _handle_hp_check():
 	if hit_points <= 0:
 		call_deferred("explode")
 
-func _handle_obstacle_check():
-	if _is_dying:
-		return
-	if $ObstacleDetector1.is_colliding() || $ObstacleDetector2.is_colliding():
-		_decelerate()
+func _is_near_obstacle() -> bool:
+	return $ObstacleDetector1.is_colliding() || $ObstacleDetector2.is_colliding()
 
 func explode():
 	_is_dying = true
@@ -49,19 +53,15 @@ func explode():
 	$Explosion.restart()
 
 func _decelerate():
-	var current_rotation = rotation
-	rotation = rotation - PI
-	velocity = _adjust_speed_for_rotation()
-	rotation = current_rotation
+	velocity = velocity.move_toward(Vector2.ZERO, deceleration_rate)
+	move_and_slide()
 
 func _chase_player():
-	if _is_dying:
-		return
 	if ! chasing_player:
 		return
 	if position.distance_to(chasing_player.position) > stop_chasing_distance_near:
-		rotation = lerp_angle(rotation, rotation + get_angle_to(chasing_player.position), rotation_rate)
 		velocity = _adjust_speed_for_rotation()
+	move_and_slide()
 
 func _adjust_speed_for_rotation():
 	return Vector2(

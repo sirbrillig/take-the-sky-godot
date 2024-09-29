@@ -14,6 +14,7 @@ signal player_coins_changed
 var is_being_hit: bool = false
 var gate_arrow_angle: float = 0.0
 var is_gate_arrow_visible: bool = false
+var close_to_zero: float = 0.001
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
@@ -71,13 +72,7 @@ func _adjust_rotation_for_direction(dir: RotationDirection):
 		return rotation + rotation_rate
 
 func _decelerate():
-	# TODO: do not decelerate past 0
-	if velocity == Vector2(0,0):
-		return
-	var current_rotation = rotation
-	rotation = rotation - PI
-	velocity = _adjust_speed_for_rotation()
-	rotation = current_rotation
+	velocity = velocity.move_toward(Vector2.ZERO, acceleration_rate)
 
 func _knockback(angle_of_hit: float):
 	velocity = Vector2(0,0)
