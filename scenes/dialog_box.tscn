@@ -1,12 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciby07tnsa21p"]
+[gd_scene load_steps=12 format=3 uid="uid://ciby07tnsa21p"]
 
 [ext_resource type="Script" path="res://scenes/dialog_box.gd" id="1_e1l17"]
 [ext_resource type="Texture2D" uid="uid://btbngj8ldkrub" path="res://images/Panel_3.png" id="1_ugga5"]
 [ext_resource type="Texture2D" uid="uid://cr0k26inl5hi1" path="res://images/ui_elements1.tres" id="3_sne2l"]
+[ext_resource type="Texture2D" uid="uid://ber3050u53ovc" path="res://images/03.png" id="4_u6rh0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fxw1h"]
 atlas = ExtResource("3_sne2l")
 region = Rect2(37, 2, 9, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uwwp"]
+atlas = ExtResource("4_u6rh0")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ucr5"]
+atlas = ExtResource("4_u6rh0")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v22l7"]
+atlas = ExtResource("4_u6rh0")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uh8y"]
+atlas = ExtResource("4_u6rh0")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60v0q"]
+atlas = ExtResource("4_u6rh0")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jucve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uwwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ucr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v22l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uh8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60v0q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [node name="DialogBox" type="CanvasLayer"]
 process_mode = 3
@@ -49,6 +93,22 @@ expand_icon = true
 [node name="NextButtonBlinkTimer" type="Timer" parent="."]
 wait_time = 0.667
 autostart = true
+
+[node name="SkipButton" type="Button" parent="."]
+offset_left = 11.0
+offset_top = 85.0
+offset_right = 85.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 10
+text = "Hold S to skip"
+flat = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkipButton"]
+visible = false
+position = Vector2(80, 11)
+scale = Vector2(0.291667, 0.291667)
+sprite_frames = SubResource("SpriteFrames_jucve")
+flip_h = true
 
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="timeout" from="NextButtonBlinkTimer" to="." method="_on_next_button_blink_timer_timeout"]

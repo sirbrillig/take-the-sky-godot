@@ -32,6 +32,7 @@ func start_dialogue(block: String) -> void:
 	clyde.start(block)
 	panel = box_class.instantiate() as DialogBox
 	panel.dialog_done.connect(_on_convo_continues)
+	panel.dialog_skip.connect(_on_convo_complete)
 	get_tree().paused = true
 	add_child(panel)
 	_on_convo_continues()
