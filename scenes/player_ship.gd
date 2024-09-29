@@ -32,6 +32,7 @@ func _draw_gate_arrow():
 	var y_pos = sin(gate_arrow_angle - rotation)
 	$GateArrow.position.x = gate_arrow_radius * x_pos
 	$GateArrow.position.y = gate_arrow_radius * y_pos
+	$GateArrow.look_at(gate.position)
 
 func _handle_movement():
 	$EngineSprite.visible = false
