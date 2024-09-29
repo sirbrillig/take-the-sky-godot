@@ -17,43 +17,53 @@ enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
 var facing_direction: float = 0
 
-func _physics_process(delta: float) -> void:
-	if _is_dying:
-		return
+func _set_chasing_player():
 	var players = get_tree().get_nodes_in_group("PlayerGroup")
 	if players[0]:
 		chasing_player = players[0]
-		chase_player(players[0], delta)
+
+func _physics_process(_delta: float) -> void:
+	if ! chasing_player:
+		_set_chasing_player()
+	_handle_hp_check()
+	_handle_obstacle_check()
+	_chase_player()
+	move_and_slide()
+
+func _handle_hp_check():
+	if _is_dying:
+		return
 	if hit_points <= 0:
 		call_deferred("explode")
-		
+
+func _handle_obstacle_check():
+	if _is_dying:
+		return
+	if $ObstacleDetector1.is_colliding() || $ObstacleDetector2.is_colliding():
+		# TODO: decelerate
+		velocity = Vector2(0, 0)
+
 func explode():
 	_is_dying = true
 	$BoltCharging.emitting = false
 	$AnimatedSprite2D.visible = false
 	$Explosion.restart()
 
-func chase_player(player: CharacterBody2D, delta: float):
-	if position.distance_to(player.position) > stop_chasing_distance_near:
-		rotation = lerp_angle(rotation, rotation + get_angle_to(player.position), rotation_rate)
-		velocity = adjust_speed_for_rotation()
-		move_and_collide(velocity * delta)
-	else:
-		# TODO: slow down instead of stopping
-		velocity = Vector2(0, 0)
+func _chase_player():
+	if _is_dying:
+		return
+	if ! chasing_player:
+		return
+	if position.distance_to(chasing_player.position) > stop_chasing_distance_near:
+		rotation = lerp_angle(rotation, rotation + get_angle_to(chasing_player.position), rotation_rate)
+		velocity = _adjust_speed_for_rotation()
 
-func adjust_speed_for_rotation():
+func _adjust_speed_for_rotation():
 	return Vector2(
 		clampf(velocity.x + acceleration_rate * cos(rotation), -max_velocity, max_velocity),
 		clampf(velocity.y + acceleration_rate * sin(rotation), -max_velocity, max_velocity),
 	)
 	
-func adjust_rotation_for_direction(dir: RotationDirection):
-	if dir == RotationDirection.COUNTERCLOCKWISE:
-		return rotation - rotation_rate
-	else:
-		return rotation + rotation_rate
-
 func fire_bolt():
 	var new_bolt = bolt.instantiate() as CharacterBody2D
 	new_bolt.global_position = Vector2(global_position.x, global_position.y)
