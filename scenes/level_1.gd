@@ -41,6 +41,7 @@ func _on_player_ship_player_coins_changed() -> void:
 		have_enemies_activated = true
 		activate_enemy_ships()
 		$DialogueControl.start_dialogue("searching ship")
+		$PlayerShip.is_gate_arrow_visible = true
 
 func gen_random_pos(orig, area) -> Vector2:
 	var x = randf_range(orig.x, area.x)

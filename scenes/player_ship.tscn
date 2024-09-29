@@ -60,6 +60,7 @@ shape = SubResource("CircleShape2D_qqneh")
 debug_color = Color(0.725734, 0.277729, 0.579432, 0.42)
 
 [node name="GateArrow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(48, 0)
 texture = SubResource("AtlasTexture_7ehgf")
 

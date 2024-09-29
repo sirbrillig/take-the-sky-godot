@@ -8,10 +8,12 @@ signal player_coins_changed
 @export var max_velocity: float = 40
 @export var rotation_rate: float = 0.03
 @export var post_hit_invincibility: float = 1.0
+@export var gate_arrow_min_distance: float = 100
+@export var gate_arrow_radius: float = 50
 
 var is_being_hit: bool = false
 var gate_arrow_angle: float = 0.0
-var gate_arrow_radius = 50
+var is_gate_arrow_visible: bool = false
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
@@ -23,10 +25,16 @@ func _process(_delta: float) -> void:
 	_draw_gate_arrow()
 
 func _draw_gate_arrow():
+	$GateArrow.visible = false
+	if ! is_gate_arrow_visible:
+		return
 	var gates = get_tree().get_nodes_in_group("Gates")
 	if gates.size() < 1:
 		return
 	var gate = gates[0]
+	if position.distance_to(gate.position) < gate_arrow_min_distance:
+		return;
+	$GateArrow.visible = true
 	gate_arrow_angle = position.angle_to_point(gate.position)
 	var x_pos = cos(gate_arrow_angle - rotation)
 	var y_pos = sin(gate_arrow_angle - rotation)
@@ -39,21 +47,21 @@ func _handle_movement():
 	if is_being_hit:
 		return
 	if Input.is_action_pressed("ui_left"):
-		rotation = adjust_rotation_for_direction(RotationDirection.COUNTERCLOCKWISE)
+		rotation = _adjust_rotation_for_direction(RotationDirection.COUNTERCLOCKWISE)
 	if Input.is_action_pressed("ui_right"):
-		rotation = adjust_rotation_for_direction(RotationDirection.CLOCKWISE)
+		rotation = _adjust_rotation_for_direction(RotationDirection.CLOCKWISE)
 		
 	if Input.is_action_pressed("ui_up"):
-		velocity = adjust_speed_for_rotation()
+		velocity = _adjust_speed_for_rotation()
 		$EngineSprite.visible = true
 
-func adjust_speed_for_rotation():
+func _adjust_speed_for_rotation():
 	return Vector2(
 		clampf(velocity.x + acceleration_rate * cos(rotation), -max_velocity, max_velocity),
 		clampf(velocity.y + acceleration_rate * sin(rotation), -max_velocity, max_velocity),
 	)
 	
-func adjust_rotation_for_direction(dir: RotationDirection):
+func _adjust_rotation_for_direction(dir: RotationDirection):
 	if dir == RotationDirection.COUNTERCLOCKWISE:
 		return rotation - rotation_rate
 	else:
@@ -65,7 +73,7 @@ func _knockback(angle_of_hit: float):
 	var current_acceleration_rate = acceleration_rate
 	rotation = angle_of_hit
 	acceleration_rate = 70
-	velocity = adjust_speed_for_rotation()
+	velocity = _adjust_speed_for_rotation()
 	rotation = current_rotation
 	acceleration_rate = current_acceleration_rate
 
