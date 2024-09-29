@@ -22,11 +22,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	_ensure_enemies_exist()
+
+func _ensure_enemies_exist():
+	if ! have_enemies_activated:
+		return
+	var ships = get_tree().get_nodes_in_group("EnemyShips")
+	var missing_ship_count = enemy_ship_count - ships.size()
+	activate_enemy_ships(missing_ship_count)
 	
 	
-func activate_enemy_ships():
-	for n in enemy_ship_count:
+func activate_enemy_ships(count: int):
+	for n in count:
 		var enemy = enemy_ship.instantiate()
 		enemy.position = gen_random_pos(enemyOrigin, enemyArea)
 		call_deferred("add_child", enemy)
@@ -39,7 +46,6 @@ func _on_player_ship_player_coins_changed() -> void:
 	$HUD.update_coins(Global.gold_coins)
 	if ! have_enemies_activated:
 		have_enemies_activated = true
-		activate_enemy_ships()
 		$DialogueControl.start_dialogue("searching ship")
 		$PlayerShip.is_gate_arrow_visible = true
 		$Gate.visible = true
