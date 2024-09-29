@@ -22,13 +22,13 @@ func _process(_delta: float) -> void:
 		var skip_button_frame_count = 5
 		var time_per_frame = int(floor(float(skip_button_hold_ms) / skip_button_frame_count))
 		var time_elapsed = Time.get_ticks_msec() - skip_button_hold_start
-		$SkipButton/AnimatedSprite2D.visible = true
+		$SkipButton.visible = true
 		$SkipButton/AnimatedSprite2D.frame = int(floor(float(time_elapsed) / time_per_frame))
 		if time_elapsed > skip_button_hold_ms:
 			dialog_skip.emit()
 	if Input.is_action_just_released("skip_dialog"):
 		skip_button_hold_start = 0
-		$SkipButton/AnimatedSprite2D.visible = false
+		$SkipButton.visible = false
 
 func set_text(text: String) -> void:
 	$TextArea.text  = text

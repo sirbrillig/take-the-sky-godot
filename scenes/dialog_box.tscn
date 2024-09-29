@@ -95,16 +95,16 @@ wait_time = 0.667
 autostart = true
 
 [node name="SkipButton" type="Button" parent="."]
-offset_left = 11.0
-offset_top = 85.0
-offset_right = 85.0
-offset_bottom = 107.0
+visible = false
+offset_left = 13.0
+offset_top = 80.0
+offset_right = 87.0
+offset_bottom = 102.0
 theme_override_font_sizes/font_size = 10
 text = "Hold S to skip"
 flat = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkipButton"]
-visible = false
 position = Vector2(80, 11)
 scale = Vector2(0.291667, 0.291667)
 sprite_frames = SubResource("SpriteFrames_jucve")
