@@ -95,20 +95,23 @@ wait_time = 0.667
 autostart = true
 
 [node name="SkipButton" type="Button" parent="."]
-visible = false
-offset_left = 13.0
+offset_left = 16.0
 offset_top = 80.0
-offset_right = 87.0
-offset_bottom = 102.0
-theme_override_font_sizes/font_size = 10
-text = "Hold S to skip"
+offset_right = 58.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 9
+text = "Skip"
 flat = true
+alignment = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkipButton"]
-position = Vector2(80, 11)
+visible = false
+position = Vector2(32, 11)
 scale = Vector2(0.291667, 0.291667)
 sprite_frames = SubResource("SpriteFrames_jucve")
 flip_h = true
 
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="timeout" from="NextButtonBlinkTimer" to="." method="_on_next_button_blink_timer_timeout"]
+[connection signal="button_down" from="SkipButton" to="." method="_on_skip_button_button_down"]
+[connection signal="button_up" from="SkipButton" to="." method="_on_skip_button_button_up"]
