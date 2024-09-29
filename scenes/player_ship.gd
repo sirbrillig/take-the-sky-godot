@@ -113,5 +113,5 @@ func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 		_on_player_hit(angle_of_hit)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area is Gate:
+	if area is Gate and area.visible:
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/level_2.tscn")
