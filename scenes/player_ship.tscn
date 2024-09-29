@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
 [ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
 [ext_resource type="Shader" path="res://scenes/player_ship.gdshader" id="3_c1x3q"]
-[ext_resource type="Texture2D" uid="uid://dg36daglriael" path="res://images/00.png" id="5_2d74p"]
+[ext_resource type="Texture2D" uid="uid://cr0k26inl5hi1" path="res://images/ui_elements1.tres" id="5_aw2mi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4cuvq"]
 shader = ExtResource("3_c1x3q")
@@ -18,7 +18,7 @@ radius = 8.50003
 radius = 11.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ehgf"]
-atlas = ExtResource("5_2d74p")
+atlas = ExtResource("5_aw2mi")
 region = Rect2(48, 0, 16, 15)
 
 [node name="PlayerShip" type="CharacterBody2D" groups=["PlayerGroup"]]

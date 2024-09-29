@@ -17,3 +17,11 @@ func _process(_delta: float) -> void:
 
 func set_text(text: String) -> void:
 	text_area.text  = text
+
+
+func _on_next_button_pressed() -> void:
+	dialog_done.emit()
+
+
+func _on_next_button_blink_timer_timeout() -> void:
+	$NextButton.visible = ! $NextButton.visible

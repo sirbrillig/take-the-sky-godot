@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciby07tnsa21p"]
+[gd_scene load_steps=5 format=3 uid="uid://ciby07tnsa21p"]
 
 [ext_resource type="Script" path="res://scenes/dialog_box.gd" id="1_e1l17"]
 [ext_resource type="Texture2D" uid="uid://btbngj8ldkrub" path="res://images/Panel_3.png" id="1_ugga5"]
+[ext_resource type="Texture2D" uid="uid://cr0k26inl5hi1" path="res://images/ui_elements1.tres" id="3_sne2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxw1h"]
+atlas = ExtResource("3_sne2l")
+region = Rect2(37, 2, 9, 12)
 
 [node name="DialogBox" type="CanvasLayer"]
 process_mode = 3
@@ -12,7 +17,7 @@ script = ExtResource("1_e1l17")
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 232.0
-offset_bottom = 104.0
+offset_bottom = 108.0
 texture = ExtResource("1_ugga5")
 patch_margin_left = 5
 patch_margin_top = 5
@@ -25,9 +30,25 @@ axis_stretch_vertical = 2
 offset_left = 24.0
 offset_top = 24.0
 offset_right = 216.0
-offset_bottom = 88.0
+offset_bottom = 81.0
 theme_override_font_sizes/normal_font_size = 10
 theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
-text = "Hey boss"
 fit_content = true
+
+[node name="NextButton" type="Button" parent="."]
+offset_left = 223.0
+offset_top = 85.0
+offset_right = 239.0
+offset_bottom = 103.0
+rotation = 1.57079
+icon = SubResource("AtlasTexture_fxw1h")
+flat = true
+expand_icon = true
+
+[node name="NextButtonBlinkTimer" type="Timer" parent="."]
+wait_time = 0.667
+autostart = true
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="timeout" from="NextButtonBlinkTimer" to="." method="_on_next_button_blink_timer_timeout"]
