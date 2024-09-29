@@ -15,6 +15,7 @@ var is_being_hit: bool = false
 var gate_arrow_angle: float = 0.0
 var is_gate_arrow_visible: bool = false
 var close_to_zero: float = 0.001
+var is_using_gate: bool = false
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
@@ -24,6 +25,13 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	_draw_gate_arrow()
+
+func is_invincible():
+	if is_being_hit:
+		return true
+	if is_using_gate:
+		return true
+	return false
 
 func _draw_gate_arrow():
 	$GateArrow.visible = false
@@ -45,7 +53,7 @@ func _draw_gate_arrow():
 
 func _handle_movement():
 	$EngineSprite.visible = false
-	if is_being_hit:
+	if is_being_hit || is_using_gate:
 		return
 	if Input.is_action_pressed("ui_left"):
 		rotation = _adjust_rotation_for_direction(RotationDirection.COUNTERCLOCKWISE)
@@ -90,6 +98,8 @@ func _flash_from_hit():
 	$ShipSprite.material.set_shader_parameter("alpha", 0)
 
 func _on_player_hit(angle_of_hit: float):
+	if is_invincible():
+		return
 	is_being_hit = true
 	_flash_from_hit()
 	_knockback(angle_of_hit)
@@ -99,7 +109,7 @@ func _on_player_hit(angle_of_hit: float):
 	is_being_hit = false
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
-	if is_being_hit:
+	if is_being_hit || is_using_gate:
 		return
 	if body is Asteroid:
 		var angle_of_hit: float = body.position.angle_to_point(position)
@@ -114,4 +124,11 @@ func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is Gate and area.visible:
+		velocity = Vector2.ZERO
+		is_using_gate = true
+		$ShipSprite.material.set_shader_parameter("alpha", 1)
+		SceneTransition.transition()
+		await SceneTransition.on_transition_finished
+		$ShipSprite.material.set_shader_parameter("alpha", 0)
+		is_using_gate = false
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/level_2.tscn")

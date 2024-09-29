@@ -51,6 +51,13 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayerShip" parent="." instance=ExtResource("3_qcrya")]
 position = Vector2(123.295, 107.231)
 wall_min_slide_angle = 2.33525
+acceleration_rate = null
+max_velocity = null
+rotation_rate = null
+post_hit_invincibility = null
+gate_transition_time = null
+gate_arrow_min_distance = null
+gate_arrow_radius = null
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 collision_layer = 64
