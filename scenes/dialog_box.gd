@@ -4,7 +4,7 @@ class_name DialogBox
 signal dialog_done
 signal dialog_skip
 
-@export var skip_button_hold_ms: int = 2000
+@export var skip_button_hold_ms: int = 1200
 var skip_button_hold_start: int = 0
 
 # Called when the node enters the scene tree for the first time.
