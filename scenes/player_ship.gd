@@ -51,9 +51,17 @@ func _draw_gate_arrow():
 	$GateArrow.position.y = gate_arrow_radius * y_pos
 	$GateArrow.look_at(gate.position)
 
+func _toggle_engines(is_on: bool):
+	if is_on:
+		$EngineSprite.visible = true
+		$Trail.emitting = true
+	else:
+		$EngineSprite.visible = false
+		$Trail.emitting = false
+
 func _handle_movement():
-	$EngineSprite.visible = false
 	if is_being_hit || is_using_gate:
+		_toggle_engines(false)
 		return
 	if Input.is_action_pressed("ui_left"):
 		rotation = _adjust_rotation_for_direction(RotationDirection.COUNTERCLOCKWISE)
@@ -62,7 +70,9 @@ func _handle_movement():
 		
 	if Input.is_action_pressed("ui_up"):
 		velocity = _adjust_speed_for_rotation()
-		$EngineSprite.visible = true
+		_toggle_engines(true)
+	else:
+		_toggle_engines(false)
 
 	if Input.is_action_pressed("ui_down"):
 		_decelerate()
