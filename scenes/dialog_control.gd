@@ -1,6 +1,8 @@
 extends Node
 class_name DialogueControl
 
+signal on_dialog_closed
+
 @export var speaker1: Color = '#f69307'
 @export var speaker2: Color = '#22e300'
 @export var speaker3: Color = '#ffffff'
@@ -57,3 +59,4 @@ func _on_convo_continues() -> void:
 func _on_convo_complete() -> void:
 	panel.queue_free()
 	get_tree().paused = false
+	on_dialog_closed.emit()

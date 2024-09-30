@@ -29,13 +29,18 @@ func _ensure_enemies_exist():
 		return
 	var ships = get_tree().get_nodes_in_group("EnemyShips")
 	var missing_ship_count = enemy_ship_count - ships.size()
-	activate_enemy_ships(missing_ship_count)
+	_activate_enemy_ships(missing_ship_count)
+
+func _begin_part_2():
+	have_enemies_activated = true
+	$PlayerShip.is_gate_arrow_visible = true
+	$Gate.visible = true
+	$DerelictShip.explode()
 	
-	
-func activate_enemy_ships(count: int):
+func _activate_enemy_ships(count: int):
 	for n in count:
 		var enemy = enemy_ship.instantiate()
-		enemy.position = gen_random_pos(enemyOrigin, enemyArea)
+		enemy.position = _generate_random_vec(enemyOrigin, enemyArea)
 		call_deferred("add_child", enemy)
 
 func _on_player_ship_player_health_changed() -> void:
@@ -45,12 +50,11 @@ func _on_player_ship_player_health_changed() -> void:
 func _on_player_ship_player_coins_changed() -> void:
 	$HUD.update_coins(Global.gold_coins)
 	if ! have_enemies_activated:
-		have_enemies_activated = true
 		$DialogueControl.start_dialogue("searching ship")
-		$PlayerShip.is_gate_arrow_visible = true
-		$Gate.visible = true
+		await $DialogueControl.on_dialog_closed
+		_begin_part_2()
 
-func gen_random_pos(orig, area) -> Vector2:
+func _generate_random_vec(orig, area) -> Vector2:
 	var x = randf_range(orig.x, area.x)
 	var y = randf_range(orig.y, area.y)
 	return Vector2(x, y)
@@ -58,9 +62,9 @@ func gen_random_pos(orig, area) -> Vector2:
 func create_asteroids() -> void:
 	for n in asteroid_count:
 		var rock = asteroid.instantiate() as Asteroid
-		var rock_spawn_location = gen_random_pos(asteroidOrigin, asteroidArea)
+		var rock_spawn_location = _generate_random_vec(asteroidOrigin, asteroidArea)
 		while rock_spawn_location.distance_to($PlayerShip.position) < too_close_distance:
-			rock_spawn_location = gen_random_pos(asteroidOrigin, asteroidArea)
+			rock_spawn_location = _generate_random_vec(asteroidOrigin, asteroidArea)
 		rock.position = rock_spawn_location
 		var direction = randf_range(0, 2 * PI)
 		rock.rotation = direction

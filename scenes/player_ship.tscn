@@ -30,7 +30,6 @@ acceleration_rate = null
 max_velocity = null
 rotation_rate = null
 post_hit_invincibility = null
-gate_transition_time = null
 gate_arrow_min_distance = null
 gate_arrow_radius = null
 metadata/_edit_group_ = true
