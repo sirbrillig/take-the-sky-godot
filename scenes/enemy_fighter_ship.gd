@@ -84,11 +84,11 @@ func _on_bolt_timer_timeout() -> void:
 	if $BoltCharging.emitting:
 		return
 	if position.distance_to(chasing_player.position) < firing_range_max:
-		$BoldChargingTimer.start()
+		$BoltChargingTimer.start()
 		$BoltCharging.emitting = true
 
 
-func _on_bold_charging_timer_timeout() -> void:
+func _on_bolt_charging_timer_timeout() -> void:
 	if _is_dying:
 		return
 	$BoltCharging.emitting = false
