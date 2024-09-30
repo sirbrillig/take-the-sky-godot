@@ -40,13 +40,12 @@ dialogue_file_name = "first_convo"
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color(0.334572, 0.353057, 0.325371, 1)
-offset_left = -592.0
-offset_top = -496.0
-offset_right = 883.0
-offset_bottom = 762.0
+offset_left = -1241.0
+offset_top = -1007.0
+offset_right = 1710.0
+offset_bottom = 1269.0
 texture = ExtResource("2_evayv")
 stretch_mode = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="PlayerShip" parent="." instance=ExtResource("3_qcrya")]
 position = Vector2(123.295, 107.231)
@@ -57,20 +56,20 @@ collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary"]
-position = Vector2(113, 588)
+position = Vector2(116, 1025)
 shape = SubResource("WorldBoundaryShape2D_u55q4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldBoundary"]
-position = Vector2(121, -366)
+position = Vector2(116, -776)
 rotation = 3.13064
 shape = SubResource("WorldBoundaryShape2D_u55q4")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldBoundary"]
-position = Vector2(-406, 44)
+position = Vector2(-949, 29)
 shape = SubResource("WorldBoundaryShape2D_kdnna")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBoundary"]
-position = Vector2(643, 166)
+position = Vector2(1404, 46)
 rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_df7ng")
 
@@ -80,7 +79,6 @@ position = Vector2(228, 141)
 [node name="HUD" parent="." instance=ExtResource("6_jrv2p")]
 
 [node name="Gate" parent="." groups=["Gates"] instance=ExtResource("7_6oipc")]
-visible = false
 position = Vector2(576, 528)
 
 [node name="AsteroidArea" type="Area2D" parent="."]

@@ -17,6 +17,7 @@ var have_enemies_activated: bool = false
 func _ready() -> void:
 	$HUD.update_health(Global.player_health)
 	$HUD.update_coins(Global.gold_coins)
+	$Gate.visible = false
 	create_asteroids()
 
 
