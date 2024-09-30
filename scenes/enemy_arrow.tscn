@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3ih43j2081m"]
+
+[ext_resource type="Texture2D" uid="uid://dg36daglriael" path="res://images/00.png" id="1_1v1wi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uwga"]
+atlas = ExtResource("1_1v1wi")
+region = Rect2(165, 2, 9, 12)
+
+[node name="EnemyArrow" type="Sprite2D"]
+texture = SubResource("AtlasTexture_3uwga")

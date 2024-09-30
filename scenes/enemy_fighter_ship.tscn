@@ -34,7 +34,7 @@ radius = 20.0
 _data = [Vector2(0.0198676, 1), 0.0, -1.22251, 0, 1, Vector2(0.60596, 0.283493), -0.601853, -0.601853, 0, 0, Vector2(0.980132, 0.125495), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_i0prg"]
+[sub_resource type="CurveTexture" id="CurveTexture_qnthf"]
 curve = SubResource("Curve_ju84o")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wod5w"]
@@ -42,12 +42,12 @@ lifetime_randomness = 0.3
 particle_flag_disable_z = true
 radial_velocity_min = -64.5
 radial_velocity_max = 126.77
-radial_velocity_curve = SubResource("CurveTexture_i0prg")
+radial_velocity_curve = SubResource("CurveTexture_qnthf")
 gravity = Vector3(0, 0, 0)
 scale_max = 3.0
 color = Color(0.976471, 0.941176, 0.00784314, 1)
 
-[node name="EnemyFighterShip" type="CharacterBody2D"]
+[node name="EnemyFighterShip" type="CharacterBody2D" groups=["EnemyShips"]]
 collision_layer = 2
 collision_mask = 10
 motion_mode = 1
@@ -95,7 +95,7 @@ lifetime = 1.4
 one_shot = true
 explosiveness = 1.0
 
-[node name="ObstacleDetector1" type="RayCast2D" parent="." groups=["EnemyShips"]]
+[node name="ObstacleDetector1" type="RayCast2D" parent="."]
 position = Vector2(0, -14)
 target_position = Vector2(78, 0)
 collision_mask = 43

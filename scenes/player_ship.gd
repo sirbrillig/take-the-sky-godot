@@ -14,7 +14,6 @@ signal player_coins_changed
 var is_being_hit: bool = false
 var gate_arrow_angle: float = 0.0
 var is_gate_arrow_visible: bool = false
-var close_to_zero: float = 0.001
 var is_using_gate: bool = false
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
@@ -42,7 +41,7 @@ func _draw_gate_arrow():
 		return
 	var gate = gates[0]
 	if position.distance_to(gate.position) < gate_arrow_min_distance:
-		return;
+		return
 	$GateArrow.visible = true
 	gate_arrow_angle = position.angle_to_point(gate.position)
 	var x_pos = cos(gate_arrow_angle - rotation)

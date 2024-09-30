@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=15 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Script" path="res://scenes/player_ship.gd" id="1_2oq58"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
 [ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
 [ext_resource type="Shader" path="res://scenes/player_ship.gdshader" id="3_c1x3q"]
 [ext_resource type="Texture2D" uid="uid://cr0k26inl5hi1" path="res://images/ui_elements1.tres" id="5_aw2mi"]
+[ext_resource type="Script" path="res://scenes/enemy_arrows.gd" id="6_2tmwb"]
+[ext_resource type="PackedScene" uid="uid://b3ih43j2081m" path="res://scenes/enemy_arrow.tscn" id="7_12e02"]
 
 [sub_resource type="Curve" id="Curve_02s4d"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -83,9 +85,6 @@ visible = false
 position = Vector2(1.5, -0.0228748)
 shape = SubResource("CircleShape2D_c3nig")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(40, 0)
-
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 collision_mask = 62
@@ -98,6 +97,11 @@ debug_color = Color(0.725734, 0.277729, 0.579432, 0.42)
 visible = false
 position = Vector2(48, 0)
 texture = SubResource("AtlasTexture_7ehgf")
+
+[node name="EnemyArrows" type="CanvasGroup" parent="."]
+position = Vector2(33, 1)
+script = ExtResource("6_2tmwb")
+arrow_scene = ExtResource("7_12e02")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
