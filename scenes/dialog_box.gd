@@ -4,7 +4,7 @@ class_name DialogBox
 signal dialog_done
 signal dialog_skip
 
-@export var skip_button_hold_ms: int = 1200
+@export var skip_button_hold_ms: int = 1000
 var skip_button_hold_start: int = 0
 var is_skip_button_pressed: bool = false
 
