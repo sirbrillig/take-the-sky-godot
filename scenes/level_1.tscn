@@ -74,7 +74,7 @@ rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_df7ng")
 
 [node name="DerelictShip" parent="." instance=ExtResource("5_e1if5")]
-position = Vector2(863, 112)
+position = Vector2(959, -83)
 ship_name = "Dovetail"
 
 [node name="DerelictShip2" parent="." instance=ExtResource("5_e1if5")]
@@ -84,7 +84,7 @@ ship_name = "Brave Combo"
 [node name="HUD" parent="." instance=ExtResource("6_jrv2p")]
 
 [node name="Gate" parent="." groups=["Gates"] instance=ExtResource("7_6oipc")]
-position = Vector2(969, 587)
+position = Vector2(-601, 699)
 
 [node name="AsteroidArea" type="Area2D" parent="."]
 visible = false
@@ -105,7 +105,7 @@ monitoring = false
 monitorable = false
 
 [node name="EnemyShipSpawnRect" type="CollisionShape2D" parent="EnemyShipSpawnArea"]
-position = Vector2(740, 82)
+position = Vector2(796, -123)
 shape = SubResource("RectangleShape2D_wqo8n")
 debug_color = Color(0.924474, 0.0234675, 0.670807, 0.42)
 
