@@ -7,7 +7,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = ! get_tree().paused
 
 func update_health(total: int) -> void:
 	$HealthMeter/PlayerHealth.text = str(total)
