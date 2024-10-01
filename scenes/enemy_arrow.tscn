@@ -7,4 +7,5 @@ atlas = ExtResource("1_1v1wi")
 region = Rect2(165, 2, 9, 12)
 
 [node name="EnemyArrow" type="Sprite2D"]
+modulate = Color(1, 0, 0, 1)
 texture = SubResource("AtlasTexture_3uwga")
