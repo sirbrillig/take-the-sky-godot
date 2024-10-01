@@ -50,12 +50,6 @@ stretch_mode = 1
 [node name="PlayerShip" parent="." instance=ExtResource("3_qcrya")]
 position = Vector2(123.295, 107.231)
 wall_min_slide_angle = 2.33525
-acceleration_rate = 0.8
-max_velocity = 40.0
-rotation_rate = 0.03
-post_hit_invincibility = 1.0
-gate_arrow_min_distance = 100.0
-gate_arrow_radius = 50.0
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 collision_layer = 64

@@ -1,8 +1,10 @@
 extends CanvasGroup
+class_name NodeGroupArrows
 
 @export var arrow_min_distance: float = 100
-@export var arrow_radius: float = 35
+@export var arrow_radius: float = 45
 @export var arrow_scene: PackedScene
+@export var node_group_name: String
 
 @onready var player = get_parent()
 
@@ -11,7 +13,7 @@ var is_arrow_visible: bool = false
 var arrow_ship_pairs = []
 
 func _process(_delta: float) -> void:
-	var ships = get_tree().get_nodes_in_group("EnemyShips")
+	var ships = get_tree().get_nodes_in_group(node_group_name)
 	for ship in ships:
 		if arrow_ship_pairs.any(func(arr): return arr.ship == ship):
 			continue
@@ -26,13 +28,13 @@ func _process(_delta: float) -> void:
 		pair.arrow.queue_free()
 		arrow_ship_pairs.erase(pair)
 
-func _add_arrow(ship: EnemyFighterShip):
+func _add_arrow(ship: CharacterBody2D):
 	var arrow = arrow_scene.instantiate()
 	var pair = {"arrow": arrow, "ship": ship}
 	arrow_ship_pairs.push_back(pair)
 	player.add_child(arrow)
 
-func _draw_gate_arrow(ship: EnemyFighterShip, arrow: Sprite2D):
+func _draw_gate_arrow(ship: CharacterBody2D, arrow: Sprite2D):
 	arrow.visible = false
 	if player.position.distance_to(ship.position) < arrow_min_distance:
 		return

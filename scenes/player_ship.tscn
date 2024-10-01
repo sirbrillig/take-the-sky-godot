@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=16 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Script" path="res://scenes/player_ship.gd" id="1_2oq58"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
 [ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
 [ext_resource type="Shader" path="res://scenes/player_ship.gdshader" id="3_c1x3q"]
 [ext_resource type="Texture2D" uid="uid://cr0k26inl5hi1" path="res://images/ui_elements1.tres" id="5_aw2mi"]
-[ext_resource type="Script" path="res://scenes/enemy_arrows.gd" id="6_2tmwb"]
 [ext_resource type="PackedScene" uid="uid://b3ih43j2081m" path="res://scenes/enemy_arrow.tscn" id="7_12e02"]
+[ext_resource type="Script" path="res://scenes/node_group_arrows.gd" id="8_5k44n"]
+[ext_resource type="PackedScene" uid="uid://nnb0kijaxk7u" path="res://scenes/derelict_arrow.tscn" id="9_v0s5p"]
 
 [sub_resource type="Curve" id="Curve_02s4d"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -92,10 +93,16 @@ visible = false
 position = Vector2(48, 0)
 texture = SubResource("AtlasTexture_7ehgf")
 
-[node name="EnemyArrows" type="CanvasGroup" parent="."]
-position = Vector2(33, 1)
-script = ExtResource("6_2tmwb")
+[node name="DerelictShipArrows" type="CanvasGroup" parent="."]
+script = ExtResource("8_5k44n")
+arrow_scene = ExtResource("9_v0s5p")
+node_group_name = "DerelictShips"
+
+[node name="EnemyShipArrows" type="CanvasGroup" parent="."]
+script = ExtResource("8_5k44n")
+arrow_radius = 35.0
 arrow_scene = ExtResource("7_12e02")
+node_group_name = "EnemyShips"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj71t47b1s0jd"]
+
+[ext_resource type="Script" path="res://scenes/node_group_arrows.gd" id="1_1cot6"]
+
+[node name="NodeGroupArrows" type="CanvasGroup"]
+script = ExtResource("1_1cot6")
