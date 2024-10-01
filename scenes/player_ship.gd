@@ -112,11 +112,13 @@ func _on_player_hit(angle_of_hit: float):
 		return
 	is_being_hit = true
 	_flash_from_hit()
+	$SmokeEmitter.emitting = true
 	_knockback(angle_of_hit)
 	Global.player_health -= 1
 	player_health_changed.emit()
 	await get_tree().create_timer(post_hit_invincibility).timeout
 	is_being_hit = false
+	$SmokeEmitter.emitting = false
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	if is_being_hit || is_using_gate:
