@@ -13,15 +13,16 @@ var have_enemies_activated: bool = false
 @onready var enemyArea = $EnemyShipSpawnArea/EnemyShipSpawnRect.shape.extents
 @onready var enemyOrigin = $EnemyShipSpawnArea/EnemyShipSpawnRect.global_position -  enemyArea
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$HUD.update_health(Global.player_health)
 	$HUD.update_coins(Global.gold_coins)
 	$Gate.visible = false
+	var ship = find_derelict_ship("Dovetail")
+	if ship is DerelictShip:
+		ship.visible = false
 	create_asteroids()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	_ensure_enemies_exist()
 
@@ -39,19 +40,31 @@ func _activate_enemy_ships(count: int):
 		call_deferred("add_child", enemy)
 
 func handle_ship_encounter(ship_name: String):
+	var ship = find_derelict_ship(ship_name)
+	if ship is DerelictShip:
+		ship.visited = true
 	match ship_name:
 		"Brave Combo":
 			$DialogueControl.start_dialogue("start")
 			await $DialogueControl.on_dialog_closed
-			# TODO: make "Dovetail" visible
+			var dovetail = find_derelict_ship("Dovetail")
+			if dovetail is DerelictShip:
+				dovetail.visible = true
 		"Dovetail":
 			$DialogueControl.start_dialogue("searching ship")
 			await $DialogueControl.on_dialog_closed
 			have_enemies_activated = true
 			$PlayerShip.is_gate_arrow_visible = true
 			$Gate.visible = true
-			# TODO: reference ship by name instead of this
-			$DerelictShip.explode()
+			var dovetail = find_derelict_ship("Dovetail")
+			if dovetail is DerelictShip:
+				dovetail.explode()
+
+func find_derelict_ship(ship_name: String):
+	var ships = get_tree().get_nodes_in_group("DerelictShips")
+	for ship: DerelictShip in ships:
+		if ship.ship_name == ship_name:
+			return ship
 
 func _on_player_ship_player_health_changed() -> void:
 	$HUD.update_health(Global.player_health)
@@ -76,5 +89,5 @@ func create_asteroids() -> void:
 		rock.rotation = direction
 		add_child(rock)
 
-func _on_player_ship_player_visited_ship(ship_name) -> void:
+func _on_player_ship_player_visited_ship(ship_name: String) -> void:
 	handle_ship_encounter(ship_name)
