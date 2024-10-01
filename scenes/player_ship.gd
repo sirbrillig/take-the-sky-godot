@@ -3,6 +3,7 @@ class_name PlayerShip
 
 signal player_health_changed
 signal player_coins_changed
+signal player_visited_ship
 
 @export var acceleration_rate: float = 0.8
 @export var max_velocity: float = 40
@@ -123,10 +124,12 @@ func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	if body is Asteroid:
 		var angle_of_hit: float = body.position.angle_to_point(position)
 		_on_player_hit(angle_of_hit)
-	if body is DerelictShip:
+	if body is DerelictShip and body.visible:
 		Global.gold_coins += body.coins
 		body.coins = 0
 		player_coins_changed.emit()
+		player_visited_ship.emit(body.ship_name)
+		velocity = Vector2.ZERO
 	if body is Bolt:
 		var angle_of_hit: float = body.position.angle_to_point(position)
 		_on_player_hit(angle_of_hit)

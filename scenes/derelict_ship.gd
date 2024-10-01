@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name DerelictShip
 
+@export var ship_name: String
 @export var coins = 10
 
 func explode():

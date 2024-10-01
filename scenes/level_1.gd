@@ -32,17 +32,26 @@ func _ensure_enemies_exist():
 	var missing_ship_count = enemy_ship_count - ships.size()
 	_activate_enemy_ships(missing_ship_count)
 
-func _begin_part_2():
-	have_enemies_activated = true
-	$PlayerShip.is_gate_arrow_visible = true
-	$Gate.visible = true
-	$DerelictShip.explode()
-	
 func _activate_enemy_ships(count: int):
 	for n in count:
 		var enemy = enemy_ship.instantiate()
 		enemy.position = _generate_random_vec(enemyOrigin, enemyArea)
 		call_deferred("add_child", enemy)
+
+func handle_ship_encounter(ship_name: String):
+	match ship_name:
+		"Brave Combo":
+			$DialogueControl.start_dialogue("start")
+			await $DialogueControl.on_dialog_closed
+			# TODO: make "Dovetail" visible
+		"Dovetail":
+			$DialogueControl.start_dialogue("searching ship")
+			await $DialogueControl.on_dialog_closed
+			have_enemies_activated = true
+			$PlayerShip.is_gate_arrow_visible = true
+			$Gate.visible = true
+			# TODO: reference ship by name instead of this
+			$DerelictShip.explode()
 
 func _on_player_ship_player_health_changed() -> void:
 	$HUD.update_health(Global.player_health)
@@ -50,10 +59,6 @@ func _on_player_ship_player_health_changed() -> void:
 
 func _on_player_ship_player_coins_changed() -> void:
 	$HUD.update_coins(Global.gold_coins)
-	if ! have_enemies_activated:
-		$DialogueControl.start_dialogue("searching ship")
-		await $DialogueControl.on_dialog_closed
-		_begin_part_2()
 
 func _generate_random_vec(orig, area) -> Vector2:
 	var x = randf_range(orig.x, area.x)
@@ -71,5 +76,5 @@ func create_asteroids() -> void:
 		rock.rotation = direction
 		add_child(rock)
 
-func _on_convo_1_timer_timeout() -> void:
-	$DialogueControl.start_dialogue("start")
+func _on_player_ship_player_visited_ship(ship_name) -> void:
+	handle_ship_encounter(ship_name)

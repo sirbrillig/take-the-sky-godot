@@ -50,6 +50,12 @@ stretch_mode = 1
 [node name="PlayerShip" parent="." instance=ExtResource("3_qcrya")]
 position = Vector2(123.295, 107.231)
 wall_min_slide_angle = 2.33525
+acceleration_rate = 0.8
+max_velocity = 40.0
+rotation_rate = 0.03
+post_hit_invincibility = 1.0
+gate_arrow_min_distance = 100.0
+gate_arrow_radius = 50.0
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 collision_layer = 64
@@ -74,12 +80,17 @@ rotation = -1.57079
 shape = SubResource("WorldBoundaryShape2D_df7ng")
 
 [node name="DerelictShip" parent="." instance=ExtResource("5_e1if5")]
-position = Vector2(228, 141)
+position = Vector2(863, 112)
+ship_name = "Dovetail"
+
+[node name="DerelictShip2" parent="." instance=ExtResource("5_e1if5")]
+position = Vector2(175.801, 260.62)
+ship_name = "Brave Combo"
 
 [node name="HUD" parent="." instance=ExtResource("6_jrv2p")]
 
 [node name="Gate" parent="." groups=["Gates"] instance=ExtResource("7_6oipc")]
-position = Vector2(576, 528)
+position = Vector2(969, 587)
 
 [node name="AsteroidArea" type="Area2D" parent="."]
 visible = false
@@ -100,15 +111,10 @@ monitoring = false
 monitorable = false
 
 [node name="EnemyShipSpawnRect" type="CollisionShape2D" parent="EnemyShipSpawnArea"]
-position = Vector2(72, 72)
+position = Vector2(740, 82)
 shape = SubResource("RectangleShape2D_wqo8n")
 debug_color = Color(0.924474, 0.0234675, 0.670807, 0.42)
 
-[node name="Convo1Timer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-autostart = true
-
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]
-[connection signal="timeout" from="Convo1Timer" to="." method="_on_convo_1_timer_timeout"]
+[connection signal="player_visited_ship" from="PlayerShip" to="." method="_on_player_ship_player_visited_ship"]
