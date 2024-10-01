@@ -20,7 +20,10 @@ func _process(_delta: float) -> void:
 		_add_arrow(ship)
 	var pairs_to_remove = []
 	for pair in arrow_ship_pairs:
-		if ! pair.ship || pair.ship.is_queued_for_deletion() || ! pair.ship.visible || pair.ship.visited:
+		if ! pair.ship || pair.ship.is_queued_for_deletion() || ! pair.ship.visible:
+			pairs_to_remove.push_back(pair)
+			continue
+		if pair.ship is DerelictShip && pair.ship.visited:
 			pairs_to_remove.push_back(pair)
 			continue
 		_draw_gate_arrow(pair.ship, pair.arrow)
