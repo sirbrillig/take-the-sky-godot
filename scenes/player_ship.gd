@@ -99,18 +99,16 @@ func _on_player_hit(angle_of_hit: float):
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	if is_being_hit || is_using_gate:
 		return
-	if body is Asteroid:
+	if body.get_meta("bounce_when_hit", false):
 		var angle_of_hit: float = body.position.angle_to_point(position)
 		_on_player_hit(angle_of_hit)
+	if body.get_meta("stop_when_hit", false):
+		velocity = Vector2.ZERO
 	if body is DerelictShip and body.visible:
 		Global.gold_coins += body.coins
 		body.coins = 0
 		player_coins_changed.emit()
 		player_visited_ship.emit(body.ship_name)
-		velocity = Vector2.ZERO
-	if body is Bolt:
-		var angle_of_hit: float = body.position.angle_to_point(position)
-		_on_player_hit(angle_of_hit)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is Gate and area.visible:

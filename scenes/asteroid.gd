@@ -12,3 +12,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
+
+func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	if body.get_meta("stop_when_hit", false):
+		velocity = Vector2.ZERO

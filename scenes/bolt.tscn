@@ -39,6 +39,7 @@ collision_layer = 4
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_0wxfj")
+metadata/bounce_when_hit = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)

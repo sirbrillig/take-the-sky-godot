@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://s6oyhg2go8or"]
+[gd_scene load_steps=56 format=3 uid="uid://s6oyhg2go8or"]
 
 [ext_resource type="Script" path="res://scenes/asteroid.gd" id="1_aj00r"]
 [ext_resource type="Texture2D" uid="uid://cujfosiewifdo" path="res://images/asteroid.png" id="1_ov5dd"]
@@ -364,10 +364,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_rukvi"]
 radius = 26.5421
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjjty"]
+radius = 29.0
+
 [node name="Asteroid" type="CharacterBody2D"]
 collision_layer = 8
 motion_mode = 1
 script = ExtResource("1_aj00r")
+metadata/bounce_when_hit = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m4v3m")
@@ -376,3 +380,13 @@ sprite_frames = SubResource("SpriteFrames_m4v3m")
 position = Vector2(2.50033, -1.49989)
 rotation = 0.000222434
 shape = SubResource("CircleShape2D_rukvi")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 40
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fjjty")
+debug_color = Color(0.0875, 0, 0.7, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
