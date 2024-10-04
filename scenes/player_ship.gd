@@ -9,13 +9,10 @@ signal player_visited_ship
 @export var max_velocity: float = 40
 @export var rotation_rate: float = 0.03
 @export var post_hit_invincibility: float = 1.0
-@export var gate_arrow_min_distance: float = 100
-@export var gate_arrow_radius: float = 50
 
 var is_being_hit: bool = false
-var gate_arrow_angle: float = 0.0
-var is_gate_arrow_visible: bool = false
 var is_using_gate: bool = false
+
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
@@ -23,33 +20,12 @@ func _physics_process(_delta: float) -> void:
 	_handle_movement()
 	move_and_slide()
 
-func _process(_delta: float) -> void:
-	_draw_gate_arrow()
-
 func is_invincible():
 	if is_being_hit:
 		return true
 	if is_using_gate:
 		return true
 	return false
-
-func _draw_gate_arrow():
-	$GateArrow.visible = false
-	if ! is_gate_arrow_visible:
-		return
-	var gates = get_tree().get_nodes_in_group("Gates")
-	if gates.size() < 1:
-		return
-	var gate = gates[0]
-	if position.distance_to(gate.position) < gate_arrow_min_distance:
-		return
-	$GateArrow.visible = true
-	gate_arrow_angle = position.angle_to_point(gate.position)
-	var x_pos = cos(gate_arrow_angle - rotation)
-	var y_pos = sin(gate_arrow_angle - rotation)
-	$GateArrow.position.x = gate_arrow_radius * x_pos
-	$GateArrow.position.y = gate_arrow_radius * y_pos
-	$GateArrow.look_at(gate.position)
 
 func _toggle_engines(is_on: bool):
 	if is_on:

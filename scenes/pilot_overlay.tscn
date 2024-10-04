@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1mivsm7fdvxk"]
+
+[ext_resource type="Script" path="res://scenes/node_group_arrows.gd" id="1_fnrvf"]
+[ext_resource type="PackedScene" uid="uid://b3ih43j2081m" path="res://scenes/enemy_arrow.tscn" id="2_xig35"]
+[ext_resource type="PackedScene" uid="uid://bbvrjn7s06up7" path="res://scenes/gate_arrow.tscn" id="4_67d7u"]
+[ext_resource type="PackedScene" uid="uid://nnb0kijaxk7u" path="res://scenes/derelict_arrow.tscn" id="4_gj5xq"]
+
+[node name="PilotOverlay" type="CanvasGroup"]
+
+[node name="EnemyShipArrows" type="CanvasGroup" parent="."]
+script = ExtResource("1_fnrvf")
+arrow_radius = 35.0
+arrow_scene = ExtResource("2_xig35")
+node_group_name = "EnemyShips"
+
+[node name="DerelictShipArrows" type="CanvasGroup" parent="."]
+script = ExtResource("1_fnrvf")
+arrow_scene = ExtResource("4_gj5xq")
+node_group_name = "DerelictShips"
+
+[node name="GateArrows" type="CanvasGroup" parent="."]
+script = ExtResource("1_fnrvf")
+arrow_radius = 50.0
+arrow_scene = ExtResource("4_67d7u")
+node_group_name = "Gates"
