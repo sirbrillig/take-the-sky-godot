@@ -8,6 +8,9 @@ func _physics_process(_delta: float) -> void:
 	if collision != null:
 		_explode()
 
+func destroy():
+	_explode()
+
 func _explode():
 	$Sprite2D.visible = false
 	velocity = Vector2(0,0)

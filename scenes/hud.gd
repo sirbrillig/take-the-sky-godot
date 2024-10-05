@@ -14,10 +14,12 @@ func _process(_delta: float) -> void:
 		get_tree().paused = ! get_tree().paused
 	
 func update_health(total: int) -> void:
-	$HealthMeter/PlayerHealth.text = str(total)
+	$HealthMeter/Meter.max_value = Global.player_max_health
+	$HealthMeter/Meter.value = total
 	
 func update_coins(total: int) -> void:
 	$CoinMeter/Coins.text = str(total)
 
 func update_energy(total: int) -> void:
-	$EnergyMeter/Energy.text = str(total)
+	$EnergyMeter/Meter.max_value = Global.player_ship_max_energy
+	$EnergyMeter/Meter.value = total

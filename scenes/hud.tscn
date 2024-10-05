@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4o1wt1r3jfrt"]
+[gd_scene load_steps=10 format=3 uid="uid://c4o1wt1r3jfrt"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_7r1fb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d5kpm"]
+font_size = 10
+
+[sub_resource type="Theme" id="Theme_xi63w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgy8m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5tfo"]
+bg_color = Color(0.207962, 0.902344, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w0tgr"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_d0wct"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_eufyv"]
+font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wygy"]
+bg_color = Color(0.800125, 0, 0.902344, 1)
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 3
@@ -8,44 +30,64 @@ layer = 2
 script = ExtResource("1_7r1fb")
 
 [node name="HealthMeter" type="CanvasGroup" parent="."]
-metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="HealthMeter"]
-offset_right = 103.0
-offset_bottom = 23.0
-text = "Player health"
+offset_left = 14.0
+offset_top = 60.0
+offset_right = 47.0
+offset_bottom = 74.0
+rotation = -1.57079
+text = "Health"
+label_settings = SubResource("LabelSettings_d5kpm")
 
-[node name="PlayerHealth" type="Label" parent="HealthMeter"]
-offset_left = 112.0
-offset_right = 152.0
-offset_bottom = 23.0
+[node name="Meter" type="ProgressBar" parent="HealthMeter"]
+offset_left = 3.0
+offset_top = 20.0
+offset_right = 14.0
+offset_bottom = 60.0
+theme = SubResource("Theme_xi63w")
+theme_override_styles/background = SubResource("StyleBoxFlat_mgy8m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o5tfo")
+value = 70.0
+fill_mode = 3
+show_percentage = false
 
 [node name="CoinMeter" type="CanvasGroup" parent="."]
-position = Vector2(0, 23)
-metadata/_edit_group_ = true
+position = Vector2(3, 3)
 
 [node name="Label" type="Label" parent="CoinMeter"]
-offset_right = 103.0
-offset_bottom = 23.0
+offset_right = 27.0
+offset_bottom = 14.0
 text = "Coins"
+label_settings = SubResource("LabelSettings_w0tgr")
 
 [node name="Coins" type="Label" parent="CoinMeter"]
-offset_left = 112.0
-offset_right = 152.0
-offset_bottom = 23.0
+offset_left = 31.0
+offset_right = 43.0
+offset_bottom = 14.0
+text = "00"
+label_settings = SubResource("LabelSettings_d0wct")
 
 [node name="EnergyMeter" type="CanvasGroup" parent="."]
 position = Vector2(0, 23)
-metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="EnergyMeter"]
-offset_top = 23.0
-offset_right = 103.0
-offset_bottom = 46.0
+offset_left = 14.0
+offset_top = 82.0
+offset_right = 47.0
+offset_bottom = 96.0
+rotation = -1.57079
 text = "Energy"
+label_settings = SubResource("LabelSettings_eufyv")
 
-[node name="Energy" type="Label" parent="EnergyMeter"]
-offset_left = 56.0
-offset_top = 25.0
-offset_right = 96.0
-offset_bottom = 48.0
+[node name="Meter" type="ProgressBar" parent="EnergyMeter"]
+offset_left = 3.0
+offset_top = 42.0
+offset_right = 14.0
+offset_bottom = 82.0
+theme = SubResource("Theme_xi63w")
+theme_override_styles/background = SubResource("StyleBoxFlat_mgy8m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7wygy")
+value = 70.0
+fill_mode = 3
+show_percentage = false
