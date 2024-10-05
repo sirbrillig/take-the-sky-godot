@@ -111,12 +111,10 @@ position_smoothing_enabled = true
 editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1.5, -0.0228748)
 shape = SubResource("CircleShape2D_c3nig")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_mask = 62
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -145,6 +143,7 @@ update_scale = false
 [node name="FirePosition" type="CollisionShape2D" parent="."]
 position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_e6eue")
+disabled = true
 metadata/_edit_lock_ = true
 
 [node name="PlayerShipEnergyTimer" type="Timer" parent="."]
