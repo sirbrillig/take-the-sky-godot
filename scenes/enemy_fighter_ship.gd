@@ -54,6 +54,8 @@ func _is_near_obstacle() -> bool:
 
 func explode():
 	_is_dying = true
+	$TacticalShipOverlay.visible = false
+	$CollisionShape2D.disabled = true
 	$BoltCharging.emitting = false
 	$AnimatedSprite2D.visible = false
 	$Explosion.restart()
