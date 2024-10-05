@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbjmaixv2wihy"]
+[gd_scene load_steps=11 format=3 uid="uid://dbjmaixv2wihy"]
 
 [ext_resource type="Script" path="res://scenes/player_bolt.gd" id="1_k7xfj"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="2_aovgx"]
@@ -7,32 +7,38 @@
 radius = 4.0
 height = 26.0
 
-[sub_resource type="Curve" id="Curve_ee4sa"]
+[sub_resource type="Gradient" id="Gradient_7yr4l"]
+offsets = PackedFloat32Array(0, 0.966361, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.944954, 0.944954, 0.944954, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ha02m"]
+gradient = SubResource("Gradient_7yr4l")
+
+[sub_resource type="Curve" id="Curve_dahs3"]
 min_value = -1.0
 _data = [Vector2(0, 0.728095), 0.0, 0.0, 0, 0, Vector2(1, 0.125495), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_uepnh"]
-curve = SubResource("Curve_ee4sa")
+[sub_resource type="CurveTexture" id="CurveTexture_tg15u"]
+curve = SubResource("Curve_dahs3")
 
-[sub_resource type="Curve" id="Curve_vjlpk"]
+[sub_resource type="Curve" id="Curve_60onc"]
 _data = [Vector2(0, 1), 0.0, -3.0154, 0, 0, Vector2(0.427152, 0.342284), -0.973392, -0.973392, 0, 0, Vector2(0.960265, 0.118146), 0.202915, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ryxjb"]
-curve = SubResource("Curve_vjlpk")
+[sub_resource type="CurveTexture" id="CurveTexture_ah44f"]
+curve = SubResource("Curve_60onc")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwe7f"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sxj0p"]
 particle_flag_disable_z = true
 radial_velocity_min = -126.76
 radial_velocity_max = 281.69
-radial_velocity_curve = SubResource("CurveTexture_ryxjb")
+radial_velocity_curve = SubResource("CurveTexture_ah44f")
 gravity = Vector3(0, 0, 0)
 scale_max = 4.0
-color = Color(0.904297, 0.114803, 0.114803, 1)
-hue_variation_min = 0.09
-hue_variation_max = 0.4
-hue_variation_curve = SubResource("CurveTexture_uepnh")
+color = Color(0.0232086, 0.607907, 0.660156, 1)
+color_initial_ramp = SubResource("GradientTexture1D_ha02m")
+hue_variation_curve = SubResource("CurveTexture_tg15u")
 
 [node name="PlayerBolt" type="CharacterBody2D"]
 collision_layer = 4
@@ -56,7 +62,7 @@ autostart = true
 [node name="Explosion" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 80
-process_material = SubResource("ParticleProcessMaterial_dwe7f")
+process_material = SubResource("ParticleProcessMaterial_sxj0p")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
