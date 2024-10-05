@@ -1,7 +1,8 @@
 extends CharacterBody2D
 class_name EnemyFighterShip
 
-@export var hit_points: int = 1
+@export var max_hit_points: int = 3 
+@export var hit_points: int = 3
 @export var stop_chasing_distance_near: int = 50
 @export var firing_range_max: float = 190
 @export var acceleration_rate: float = 0.95
@@ -24,6 +25,7 @@ func _set_chasing_player():
 		chasing_player = players[0]
 
 func _physics_process(_delta: float) -> void:
+	_update_health_bar()
 	if _is_dying:
 		move_and_slide()
 		return
@@ -36,6 +38,10 @@ func _physics_process(_delta: float) -> void:
 		_decelerate()
 		return
 	_chase_player()
+
+func _update_health_bar():
+	$TacticalShipOverlay/Panel/TextureProgressBar.max_value = max_hit_points
+	$TacticalShipOverlay/Panel/TextureProgressBar.value = hit_points
 
 func _handle_hp_check():
 	if _is_dying:

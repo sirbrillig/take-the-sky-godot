@@ -54,7 +54,6 @@ func handle_ship_encounter(ship_name: String):
 			$DialogueControl.start_dialogue("searching ship")
 			await $DialogueControl.on_dialog_closed
 			have_enemies_activated = true
-			$PlayerShip.is_gate_arrow_visible = true
 			$Gate.visible = true
 			var dovetail = find_derelict_ship("Dovetail")
 			if dovetail is DerelictShip:

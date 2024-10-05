@@ -17,8 +17,13 @@ var is_using_gate: bool = false
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
 func _physics_process(_delta: float) -> void:
+	_update_health_bar()
 	_handle_movement()
 	move_and_slide()
+
+func _update_health_bar():
+	$TacticalShipOverlay/Panel/TextureProgressBar.max_value = Global.player_max_health
+	$TacticalShipOverlay/Panel/TextureProgressBar.value = Global.player_health
 
 func is_invincible():
 	if is_being_hit:

@@ -52,7 +52,7 @@ texture = ExtResource("2_evayv")
 stretch_mode = 1
 
 [node name="PlayerShip" parent="." instance=ExtResource("3_qcrya")]
-position = Vector2(123.295, 107.231)
+position = Vector2(-104, -40)
 wall_min_slide_angle = 2.33525
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
@@ -192,6 +192,13 @@ scale = Vector2(0.303142, 0.303142)
 [node name="ForceBuoy2" parent="Buoys" instance=ExtResource("10_3mogl")]
 position = Vector2(302, 52)
 scale = Vector2(0.303142, 0.303142)
+
+[node name="EnemyFighterShip" parent="." instance=ExtResource("2_ququ6")]
+position = Vector2(-175.584, 48.7074)
+
+[node name="Asteroid" parent="." instance=ExtResource("4_wlegp")]
+position = Vector2(-78.4816, 25.0326)
+scale = Vector2(1.46232, 1.5104)
 
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c72aevgtqtds1"]
+
+[ext_resource type="Texture2D" uid="uid://ce275r6dwwydn" path="res://images/sprite-ui-07.sprites/07-64.tres" id="1_ktubh"]
+[ext_resource type="Texture2D" uid="uid://ca5xtcg7wlv48" path="res://images/sprite-ui-07.sprites/07-63.tres" id="1_qojy1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkdud"]
+
+[node name="TacticalShipOverlay" type="CanvasGroup"]
+
+[node name="Panel" type="Panel" parent="."]
+clip_children = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gkdud")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -3.0
+offset_right = 8.0
+offset_bottom = 2.0
+scale = Vector2(1.31502, 1.68321)
+value = 80.0
+texture_under = ExtResource("1_ktubh")
+texture_progress = ExtResource("1_qojy1")
+texture_progress_offset = Vector2(2, 2)

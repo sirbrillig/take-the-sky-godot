@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=20 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Script" path="res://scenes/player_ship.gd" id="1_2oq58"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
 [ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
 [ext_resource type="Shader" path="res://scenes/player_ship.gdshader" id="3_c1x3q"]
 [ext_resource type="PackedScene" uid="uid://b1mivsm7fdvxk" path="res://scenes/pilot_overlay.tscn" id="5_1si11"]
+[ext_resource type="PackedScene" uid="uid://c72aevgtqtds1" path="res://scenes/tactical_ship_overlay.tscn" id="6_womi0"]
 
 [sub_resource type="Curve" id="Curve_02s4d"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -125,6 +126,15 @@ lifetime = 0.8
 explosiveness = 0.17
 
 [node name="PilotOverlay" parent="." instance=ExtResource("5_1si11")]
+
+[node name="TacticalShipOverlay" parent="." instance=ExtResource("6_womi0")]
+top_level = true
+position = Vector2(8, -8)
+
+[node name="TacticalOverlayTransform" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../TacticalShipOverlay")
+update_rotation = false
+update_scale = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
