@@ -9,7 +9,7 @@ signal player_visited_ship
 @export var max_velocity: float = 40
 @export var rotation_rate: float = 0.03
 @export var post_hit_invincibility: float = 1.0
-
+@export var bolt_energy_cost: int = 4
 @export var bolt: PackedScene
 
 var is_being_hit: bool = false
@@ -64,6 +64,9 @@ func _handle_movement():
 		_attack()
 
 func _attack():
+	if Global.player_ship_energy < bolt_energy_cost:
+		return
+	Global.player_ship_energy -= bolt_energy_cost
 	var new_bolt = bolt.instantiate() as CharacterBody2D
 	new_bolt.global_position = Vector2($FirePosition.global_position.x, $FirePosition.global_position.y)
 	new_bolt.rotation = rotation
@@ -137,3 +140,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		$ShipSprite.material.set_shader_parameter("alpha", 0)
 		is_using_gate = false
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/level_2.tscn")
+
+
+func _on_player_ship_energy_timer_timeout() -> void:
+	if Global.player_ship_energy < Global.player_ship_max_energy:
+		Global.player_ship_energy += 1

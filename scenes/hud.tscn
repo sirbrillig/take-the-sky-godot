@@ -33,3 +33,19 @@ text = "Coins"
 offset_left = 112.0
 offset_right = 152.0
 offset_bottom = 23.0
+
+[node name="EnergyMeter" type="CanvasGroup" parent="."]
+position = Vector2(0, 23)
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="EnergyMeter"]
+offset_top = 23.0
+offset_right = 103.0
+offset_bottom = 46.0
+text = "Energy"
+
+[node name="Energy" type="Label" parent="EnergyMeter"]
+offset_left = 56.0
+offset_top = 25.0
+offset_right = 96.0
+offset_bottom = 48.0

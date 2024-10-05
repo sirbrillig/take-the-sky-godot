@@ -14,8 +14,6 @@ var have_enemies_activated: bool = false
 @onready var enemyOrigin = $EnemyShipSpawnArea/EnemyShipSpawnRect.global_position -  enemyArea
 
 func _ready() -> void:
-	$HUD.update_health(Global.player_health)
-	$HUD.update_coins(Global.gold_coins)
 	$Gate.visible = false
 	var ship = find_derelict_ship("Dovetail")
 	if ship is DerelictShip:
@@ -64,13 +62,6 @@ func find_derelict_ship(ship_name: String):
 	for ship: DerelictShip in ships:
 		if ship.ship_name == ship_name:
 			return ship
-
-func _on_player_ship_player_health_changed() -> void:
-	$HUD.update_health(Global.player_health)
-
-
-func _on_player_ship_player_coins_changed() -> void:
-	$HUD.update_coins(Global.gold_coins)
 
 func _generate_random_vec(orig, area) -> Vector2:
 	var x = randf_range(orig.x, area.x)
