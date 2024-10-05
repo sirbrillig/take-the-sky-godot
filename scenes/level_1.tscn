@@ -195,6 +195,7 @@ scale = Vector2(0.303142, 0.303142)
 
 [node name="EnemyFighterShip" parent="." instance=ExtResource("2_ququ6")]
 position = Vector2(-175.584, 48.7074)
+coin_reward = 10
 
 [node name="Asteroid" parent="." instance=ExtResource("4_wlegp")]
 position = Vector2(-78.4816, 25.0326)

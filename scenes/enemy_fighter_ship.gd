@@ -9,6 +9,7 @@ class_name EnemyFighterShip
 @export var deceleration_rate: float = 1.25
 @export var max_velocity: float = 38
 @export var rotation_rate: float = 0.02
+@export var coin_reward: int = 4
 
 @export var bolt: PackedScene
 
@@ -54,6 +55,7 @@ func _is_near_obstacle() -> bool:
 
 func explode():
 	_is_dying = true
+	Global.gold_coins += coin_reward
 	$TacticalShipOverlay.visible = false
 	$CollisionShape2D.disabled = true
 	$BoltCharging.emitting = false
