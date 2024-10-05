@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=22 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Script" path="res://scenes/player_ship.gd" id="1_2oq58"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
 [ext_resource type="Texture2D" uid="uid://p3qvtq2caru7" path="res://images/tiny_ship1.png" id="1_r74qj"]
+[ext_resource type="PackedScene" uid="uid://dbjmaixv2wihy" path="res://scenes/player_bolt.tscn" id="2_mdahm"]
 [ext_resource type="Shader" path="res://scenes/player_ship.gdshader" id="3_c1x3q"]
 [ext_resource type="PackedScene" uid="uid://b1mivsm7fdvxk" path="res://scenes/pilot_overlay.tscn" id="5_1si11"]
 [ext_resource type="PackedScene" uid="uid://c72aevgtqtds1" path="res://scenes/tactical_ship_overlay.tscn" id="6_womi0"]
@@ -74,11 +75,15 @@ scale_over_velocity_curve = SubResource("CurveTexture_bv7sv")
 color = Color(0.507812, 0.507812, 0.507812, 1)
 color_ramp = SubResource("GradientTexture1D_m83tb")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6eue"]
+size = Vector2(1.25, 1.5)
+
 [node name="PlayerShip" type="CharacterBody2D" groups=["PlayerGroup"]]
 position = Vector2(8, -8)
 collision_mask = 106
 motion_mode = 1
 script = ExtResource("1_2oq58")
+bolt = ExtResource("2_mdahm")
 metadata/_edit_group_ = true
 
 [node name="EngineSprite" type="Sprite2D" parent="."]
@@ -135,6 +140,10 @@ position = Vector2(8, -8)
 remote_path = NodePath("../TacticalShipOverlay")
 update_rotation = false
 update_scale = false
+
+[node name="FirePosition" type="CollisionShape2D" parent="."]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_e6eue")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

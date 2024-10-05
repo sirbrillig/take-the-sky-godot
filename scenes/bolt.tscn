@@ -12,27 +12,27 @@ min_value = -1.0
 _data = [Vector2(0, 0.728095), 0.0, 0.0, 0, 0, Vector2(1, 0.125495), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_uepnh"]
+[sub_resource type="CurveTexture" id="CurveTexture_8dwyi"]
 curve = SubResource("Curve_33std")
 
 [sub_resource type="Curve" id="Curve_2pwc0"]
 _data = [Vector2(0, 1), 0.0, -3.0154, 0, 0, Vector2(0.427152, 0.342284), -0.973392, -0.973392, 0, 0, Vector2(0.960265, 0.118146), 0.202915, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ryxjb"]
+[sub_resource type="CurveTexture" id="CurveTexture_mllv7"]
 curve = SubResource("Curve_2pwc0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_18ew0"]
 particle_flag_disable_z = true
 radial_velocity_min = -126.76
 radial_velocity_max = 281.69
-radial_velocity_curve = SubResource("CurveTexture_ryxjb")
+radial_velocity_curve = SubResource("CurveTexture_mllv7")
 gravity = Vector3(0, 0, 0)
 scale_max = 4.0
 color = Color(0.904297, 0.114803, 0.114803, 1)
 hue_variation_min = 0.09
 hue_variation_max = 0.4
-hue_variation_curve = SubResource("CurveTexture_uepnh")
+hue_variation_curve = SubResource("CurveTexture_8dwyi")
 
 [node name="Bolt" type="CharacterBody2D" groups=["Bolts"]]
 collision_layer = 4
@@ -50,7 +50,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5r6js")
 debug_color = Color(0, 0.463181, 0.406968, 0.419608)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="LifetimeTimer" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
 autostart = true
@@ -63,5 +63,5 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="Explosion" to="." method="_on_explosion_finished"]

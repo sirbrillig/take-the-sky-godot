@@ -77,7 +77,7 @@ func _adjust_speed_for_rotation():
 	
 func fire_bolt():
 	var new_bolt = bolt.instantiate() as CharacterBody2D
-	new_bolt.global_position = Vector2(global_position.x, global_position.y)
+	new_bolt.global_position = Vector2($BoltCharging.global_position.x, $BoltCharging.global_position.y)
 	new_bolt.look_at(chasing_player.global_position)
 	new_bolt.velocity = Vector2(new_bolt.speed * cos(rotation), new_bolt.speed * sin(rotation))
 	get_parent().add_child(new_bolt)
@@ -104,6 +104,9 @@ func _on_bolt_charging_timer_timeout() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if _is_dying:
 		return
+	if body is PlayerBolt:
+		hit_points -= 1
+		body.destroy()
 	if body is Asteroid:
 		hit_points -= 1
 

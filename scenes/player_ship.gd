@@ -10,6 +10,8 @@ signal player_visited_ship
 @export var rotation_rate: float = 0.03
 @export var post_hit_invincibility: float = 1.0
 
+@export var bolt: PackedScene
+
 var is_being_hit: bool = false
 var is_using_gate: bool = false
 
@@ -57,6 +59,16 @@ func _handle_movement():
 
 	if Input.is_action_pressed("ui_down"):
 		_decelerate()
+
+	if Input.is_action_just_pressed("ui_accept"):
+		_attack()
+
+func _attack():
+	var new_bolt = bolt.instantiate() as CharacterBody2D
+	new_bolt.global_position = Vector2($FirePosition.global_position.x, $FirePosition.global_position.y)
+	new_bolt.rotation = rotation
+	new_bolt.velocity = Vector2(new_bolt.speed * cos(rotation), new_bolt.speed * sin(rotation))
+	get_parent().add_child(new_bolt)
 
 func _adjust_speed_for_rotation():
 	return Vector2(

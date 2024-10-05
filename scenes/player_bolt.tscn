@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbjmaixv2wihy"]
+
+[ext_resource type="Script" path="res://scenes/player_bolt.gd" id="1_k7xfj"]
+[ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="2_aovgx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3alte"]
+radius = 4.0
+height = 26.0
+
+[sub_resource type="Curve" id="Curve_ee4sa"]
+min_value = -1.0
+_data = [Vector2(0, 0.728095), 0.0, 0.0, 0, 0, Vector2(1, 0.125495), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uepnh"]
+curve = SubResource("Curve_ee4sa")
+
+[sub_resource type="Curve" id="Curve_vjlpk"]
+_data = [Vector2(0, 1), 0.0, -3.0154, 0, 0, Vector2(0.427152, 0.342284), -0.973392, -0.973392, 0, 0, Vector2(0.960265, 0.118146), 0.202915, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ryxjb"]
+curve = SubResource("Curve_vjlpk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwe7f"]
+particle_flag_disable_z = true
+radial_velocity_min = -126.76
+radial_velocity_max = 281.69
+radial_velocity_curve = SubResource("CurveTexture_ryxjb")
+gravity = Vector3(0, 0, 0)
+scale_max = 4.0
+color = Color(0.904297, 0.114803, 0.114803, 1)
+hue_variation_min = 0.09
+hue_variation_max = 0.4
+hue_variation_curve = SubResource("CurveTexture_uepnh")
+
+[node name="PlayerBolt" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 40
+script = ExtResource("1_k7xfj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_aovgx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3alte")
+debug_color = Color(0, 0.463181, 0.406968, 0.419608)
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_dwe7f")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
+[connection signal="finished" from="Explosion" to="." method="_on_explosion_finished"]
