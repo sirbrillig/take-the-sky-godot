@@ -67,8 +67,8 @@ func _spend_energy(amount: int) -> bool:
 	if Global.player_ship_energy >= amount:
 		Global.player_ship_energy -= amount
 		return true
-	if Global.player_ship_energy > 0 and Global.player_ship_energy + Global.gold_coins >= amount:
-		Global.gold_coins -= amount - Global.player_ship_energy
+	if Global.player_ship_energy > 0 and (Global.player_ship_energy + Global.gold_coins) >= amount:
+		Global.gold_coins -= (amount - Global.player_ship_energy)
 		Global.player_ship_energy = 0
 		return true
 	if Global.gold_coins >= amount:
