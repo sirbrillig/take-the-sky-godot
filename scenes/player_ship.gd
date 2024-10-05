@@ -63,10 +63,22 @@ func _handle_movement():
 	if Input.is_action_just_pressed("ui_accept"):
 		_attack()
 
+func _spend_energy(amount: int) -> bool:
+	if Global.player_ship_energy >= amount:
+		Global.player_ship_energy -= amount
+		return true
+	if Global.player_ship_energy > 0 and Global.player_ship_energy + Global.gold_coins >= amount:
+		Global.gold_coins -= amount - Global.player_ship_energy
+		Global.player_ship_energy = 0
+		return true
+	if Global.gold_coins >= amount:
+		Global.gold_coins -= amount
+		return true
+	return false
+
 func _attack():
-	if Global.player_ship_energy < bolt_energy_cost:
+	if not _spend_energy(bolt_energy_cost):
 		return
-	Global.player_ship_energy -= bolt_energy_cost
 	var new_bolt = bolt.instantiate() as CharacterBody2D
 	new_bolt.global_position = Vector2($FirePosition.global_position.x, $FirePosition.global_position.y)
 	new_bolt.rotation = rotation
