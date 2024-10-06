@@ -1,38 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgpsc7cdgwyx4"]
+[gd_scene load_steps=6 format=3 uid="uid://cgpsc7cdgwyx4"]
 
 [ext_resource type="Script" path="res://scenes/bolt.gd" id="1_0wxfj"]
 [ext_resource type="Texture2D" uid="uid://dls3vqvt015e7" path="res://images/02.png" id="1_pxk2i"]
+[ext_resource type="PackedScene" uid="uid://d2os0af1p0sjj" path="res://scenes/explosion.tscn" id="3_nr4hc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5r6js"]
 radius = 4.0
 height = 26.0
 
-[sub_resource type="Curve" id="Curve_33std"]
-min_value = -1.0
-_data = [Vector2(0, 0.728095), 0.0, 0.0, 0, 0, Vector2(1, 0.125495), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_8dwyi"]
-curve = SubResource("Curve_33std")
-
-[sub_resource type="Curve" id="Curve_2pwc0"]
-_data = [Vector2(0, 1), 0.0, -3.0154, 0, 0, Vector2(0.427152, 0.342284), -0.973392, -0.973392, 0, 0, Vector2(0.960265, 0.118146), 0.202915, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_mllv7"]
-curve = SubResource("Curve_2pwc0")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_18ew0"]
-particle_flag_disable_z = true
-radial_velocity_min = -126.76
-radial_velocity_max = 281.69
-radial_velocity_curve = SubResource("CurveTexture_mllv7")
-gravity = Vector3(0, 0, 0)
-scale_max = 4.0
-color = Color(0.904297, 0.114803, 0.114803, 1)
-hue_variation_min = 0.09
-hue_variation_max = 0.4
-hue_variation_curve = SubResource("CurveTexture_8dwyi")
+[sub_resource type="Gradient" id="Gradient_od3b5"]
 
 [node name="Bolt" type="CharacterBody2D" groups=["Bolts"]]
 collision_layer = 4
@@ -55,13 +31,11 @@ wait_time = 2.5
 one_shot = true
 autostart = true
 
-[node name="Explosion" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 80
-process_material = SubResource("ParticleProcessMaterial_18ew0")
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
+[node name="Explosion" parent="." instance=ExtResource("3_nr4hc")]
+emission_sphere_radius = 0.93
+color = Color(0.671875, 0.0538025, 0.179208, 1)
+color_ramp = SubResource("Gradient_od3b5")
+hue_variation_max = 0.77
 
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="Explosion" to="." method="_on_explosion_finished"]

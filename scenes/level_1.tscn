@@ -197,6 +197,9 @@ scale = Vector2(0.303142, 0.303142)
 position = Vector2(-78.4816, 25.0326)
 scale = Vector2(1.46232, 1.5104)
 
+[node name="EnemyFighterShip" parent="." instance=ExtResource("2_ququ6")]
+position = Vector2(-193.281, -150.076)
+
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]
 [connection signal="player_visited_ship" from="PlayerShip" to="." method="_on_player_ship_player_visited_ship"]

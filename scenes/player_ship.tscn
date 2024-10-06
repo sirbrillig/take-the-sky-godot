@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=13 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Script" path="res://scenes/player_ship.gd" id="1_2oq58"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
@@ -7,48 +7,6 @@
 [ext_resource type="Shader" path="res://scenes/player_ship.gdshader" id="3_c1x3q"]
 [ext_resource type="PackedScene" uid="uid://b1mivsm7fdvxk" path="res://scenes/pilot_overlay.tscn" id="5_1si11"]
 [ext_resource type="PackedScene" uid="uid://c72aevgtqtds1" path="res://scenes/tactical_ship_overlay.tscn" id="6_womi0"]
-
-[sub_resource type="Curve" id="Curve_02s4d"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_v6g22"]
-curve = SubResource("Curve_02s4d")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kyy56"]
-lifetime_randomness = 0.07
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 2.75
-spread = 0.0
-initial_velocity_max = 108.7
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -2.23517e-06
-linear_accel_max = 56.52
-scale_min = 0.0
-scale_max = 1.5
-scale_curve = SubResource("CurveTexture_v6g22")
-
-[sub_resource type="Curve" id="Curve_mdurx"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_nw45y"]
-curve = SubResource("Curve_mdurx")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_naghp"]
-lifetime_randomness = 0.07
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 10.34
-spread = 0.0
-initial_velocity_max = 108.7
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -2.23517e-06
-linear_accel_max = 56.52
-scale_min = 0.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_nw45y")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4cuvq"]
 shader = ExtResource("3_c1x3q")
@@ -61,40 +19,7 @@ radius = 8.50003
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqneh"]
 radius = 11.0
 
-[sub_resource type="Gradient" id="Gradient_7vdlt"]
-offsets = PackedFloat32Array(0.122324, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_m83tb"]
-gradient = SubResource("Gradient_7vdlt")
-
-[sub_resource type="Curve" id="Curve_74dp2"]
-_data = [Vector2(0, 0.991398), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_tdr4o"]
-curve = SubResource("Curve_74dp2")
-
-[sub_resource type="Curve" id="Curve_es2i7"]
-max_value = 3.0
-_data = [Vector2(0, 0), 0.0, 4.2, 0, 0, Vector2(1, 0.935598), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_bv7sv"]
-curve = SubResource("Curve_es2i7")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bns7j"]
-lifetime_randomness = 0.14
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 8.01
-spread = 5.753
-initial_velocity_max = 81.54
-gravity = Vector3(0, 0, 0)
-scale_max = 10.0
-scale_curve = SubResource("CurveTexture_tdr4o")
-scale_over_velocity_curve = SubResource("CurveTexture_bv7sv")
-color = Color(0.507812, 0.507812, 0.507812, 1)
-color_ramp = SubResource("GradientTexture1D_m83tb")
+[sub_resource type="Gradient" id="Gradient_h87b8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6eue"]
 size = Vector2(1.25, 1.5)
@@ -113,24 +38,40 @@ position = Vector2(-13, 0)
 scale = Vector2(0.400001, 0.400001)
 texture = ExtResource("1_nxi8f")
 
-[node name="Trail" type="GPUParticles2D" parent="."]
+[node name="Trail" type="CPUParticles2D" parent="."]
 position = Vector2(-10, 0)
 rotation = 3.14159
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_kyy56")
 lifetime = 0.7
+emission_shape = 1
+emission_sphere_radius = 2.07
+spread = 1.32
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.37
+initial_velocity_max = 104.6
+scale_amount_min = 0.0
 metadata/_edit_lock_ = true
 
-[node name="DashEmitter" type="GPUParticles2D" parent="."]
+[node name="DashEmitter" type="CPUParticles2D" parent="."]
 position = Vector2(-10, 0)
 rotation = 3.14159
 emitting = false
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_naghp")
 lifetime = 0.7
 one_shot = true
 explosiveness = 1.0
+randomness = 0.13
+lifetime_randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 9.04
+spread = 1.51
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.71
+initial_velocity_max = 146.44
+angular_velocity_max = 54.23
+scale_amount_min = 0.0
+scale_amount_max = 3.0
 metadata/_edit_lock_ = true
 
 [node name="ShipSprite" type="Sprite2D" parent="."]
@@ -155,13 +96,23 @@ collision_mask = 62
 shape = SubResource("CircleShape2D_qqneh")
 debug_color = Color(0.725734, 0.277729, 0.579432, 0.42)
 
-[node name="SmokeEmitter" type="GPUParticles2D" parent="."]
+[node name="SmokeEmitter" type="CPUParticles2D" parent="."]
 rotation = -3.14159
 emitting = false
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_bns7j")
 lifetime = 0.8
 explosiveness = 0.17
+emission_shape = 1
+emission_sphere_radius = 4.22
+spread = 29.94
+gravity = Vector2(0, 0)
+initial_velocity_max = 54.39
+damping_max = 18.828
+scale_amount_min = 0.0
+scale_amount_max = 4.0
+color = Color(0.955078, 0.283539, 0.283539, 1)
+color_ramp = SubResource("Gradient_h87b8")
+hue_variation_max = 0.3
 
 [node name="PilotOverlay" parent="." instance=ExtResource("5_1si11")]
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2os0af1p0sjj"]
+
+[sub_resource type="Curve" id="Curve_f7tmd"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0.174603, 172.032), 0.0, -251.71, 0, 0, Vector2(1, -4.76373), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Explosion" type="CPUParticles2D"]
+emitting = false
+amount = 100
+lifetime = 1.1
+one_shot = true
+preprocess = 0.2
+explosiveness = 1.0
+lifetime_randomness = 0.75
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 20.0
+radial_accel_max = 2.0
+radial_accel_curve = SubResource("Curve_f7tmd")
+tangential_accel_max = 14.23
+scale_amount_max = 3.0

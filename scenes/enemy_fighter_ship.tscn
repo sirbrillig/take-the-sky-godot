@@ -1,18 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://7ru616ox3xya"]
+[gd_scene load_steps=10 format=3 uid="uid://7ru616ox3xya"]
 
 [ext_resource type="Script" path="res://scenes/enemy_fighter_ship.gd" id="1_0fxf1"]
 [ext_resource type="Texture2D" uid="uid://bsx821bdw4gii" path="res://images/tiny_ship9.png" id="1_bbknx"]
 [ext_resource type="PackedScene" uid="uid://cgpsc7cdgwyx4" path="res://scenes/bolt.tscn" id="2_tahh0"]
 [ext_resource type="PackedScene" uid="uid://c72aevgtqtds1" path="res://scenes/tactical_ship_overlay.tscn" id="4_q5t5t"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jd4by"]
-particle_flag_disable_z = true
-emission_shape = 2
-emission_sphere_radius = 11.0
-radial_velocity_min = -87.43
-radial_velocity_max = -2.23517e-05
-gravity = Vector3(0, 0, 0)
-color = Color(1, 0.136719, 0.136719, 1)
+[ext_resource type="PackedScene" uid="uid://d2os0af1p0sjj" path="res://scenes/explosion.tscn" id="5_o0bjs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6sqq"]
 animations = [{
@@ -31,22 +23,7 @@ radius = 15.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn638"]
 radius = 20.0
 
-[sub_resource type="Curve" id="Curve_ju84o"]
-_data = [Vector2(0.0198676, 1), 0.0, -1.22251, 0, 1, Vector2(0.60596, 0.283493), -0.601853, -0.601853, 0, 0, Vector2(0.980132, 0.125495), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_20yv5"]
-curve = SubResource("Curve_ju84o")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wod5w"]
-lifetime_randomness = 0.3
-particle_flag_disable_z = true
-radial_velocity_min = -64.5
-radial_velocity_max = 126.77
-radial_velocity_curve = SubResource("CurveTexture_20yv5")
-gravity = Vector3(0, 0, 0)
-scale_max = 3.0
-color = Color(0.976471, 0.941176, 0.00784314, 1)
+[sub_resource type="Gradient" id="Gradient_a317k"]
 
 [node name="EnemyFighterShip" type="CharacterBody2D" groups=["EnemyShips"]]
 collision_layer = 2
@@ -55,19 +32,27 @@ motion_mode = 1
 script = ExtResource("1_0fxf1")
 bolt = ExtResource("2_tahh0")
 
-[node name="BoltCharging" type="GPUParticles2D" parent="."]
+[node name="BoltCharging" type="CPUParticles2D" parent="."]
 position = Vector2(14, 0)
 emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_jd4by")
-lifetime = 0.2
+amount = 15
+lifetime = 0.4
 local_coords = true
+draw_order = 1
+emission_shape = 2
+emission_sphere_radius = 8.0
+spread = 121.26
+gravity = Vector2(0, 0)
+orbit_velocity_max = 0.4
+radial_accel_min = -90.0
+color = Color(1, 0.137255, 0.137255, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.57079
 sprite_frames = SubResource("SpriteFrames_o6sqq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_f3266")
 
 [node name="BoltTimer" type="Timer" parent="."]
@@ -87,14 +72,6 @@ collision_mask = 13
 shape = SubResource("CircleShape2D_hn638")
 debug_color = Color(0.804688, 0.0597229, 0.0597229, 0.42)
 
-[node name="Explosion" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 90
-process_material = SubResource("ParticleProcessMaterial_wod5w")
-lifetime = 1.4
-one_shot = true
-explosiveness = 1.0
-
 [node name="ObstacleDetector1" type="RayCast2D" parent="."]
 position = Vector2(0, -14)
 target_position = Vector2(78, 0)
@@ -112,6 +89,11 @@ top_level = true
 remote_path = NodePath("../TacticalShipOverlay")
 update_rotation = false
 update_scale = false
+
+[node name="Explosion" parent="." instance=ExtResource("5_o0bjs")]
+position = Vector2(-0.969055, 0.16082)
+color = Color(0.728516, 0, 0.0939102, 1)
+color_ramp = SubResource("Gradient_a317k")
 
 [connection signal="timeout" from="BoltTimer" to="." method="_on_bolt_timer_timeout"]
 [connection signal="timeout" from="BoltChargingTimer" to="." method="_on_bolt_charging_timer_timeout"]
