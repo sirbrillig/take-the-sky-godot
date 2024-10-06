@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bjl58jfsq80ac"]
+[gd_scene load_steps=58 format=3 uid="uid://bjl58jfsq80ac"]
 
 [ext_resource type="Texture2D" uid="uid://cysbp0q85eqvb" path="res://images/gate.png" id="1_7hjsu"]
 [ext_resource type="Script" path="res://scenes/gate.gd" id="1_qdrhq"]
@@ -364,34 +364,16 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bebor"]
 height = 66.6032
 
-[sub_resource type="Curve" id="Curve_a6578"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+[sub_resource type="Curve" id="Curve_fjgef"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_43bpb"]
-curve = SubResource("Curve_a6578")
+[sub_resource type="Gradient" id="Gradient_caisw"]
 
-[sub_resource type="Curve" id="Curve_8xbhm"]
-max_value = 3.0
-_data = [Vector2(0, 0), 0.0, 4.2, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_1u7m2"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 2.8, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_3air1"]
-curve = SubResource("Curve_8xbhm")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6xlcv"]
-particle_flag_disable_z = true
-emission_shape = 2
-emission_sphere_radius = 42.21
-radial_velocity_min = -153.01
-radial_velocity_max = -2.23517e-05
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_43bpb")
-scale_over_velocity_min = 1.0
-scale_over_velocity_max = 4.0
-scale_over_velocity_curve = SubResource("CurveTexture_3air1")
-hue_variation_min = -0.59
-hue_variation_max = 0.97
 
 [node name="Gate" type="Area2D"]
 collision_layer = 16
@@ -407,6 +389,19 @@ frame_progress = 0.718997
 rotation = 0.850833
 shape = SubResource("CapsuleShape2D_bebor")
 
-[node name="GatePullParticles" type="GPUParticles2D" parent="."]
+[node name="GatePullParticles" type="CPUParticles2D" parent="."]
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_6xlcv")
+lifetime = 0.6
+emission_shape = 2
+emission_sphere_radius = 34.21
+gravity = Vector2(0, 0)
+radial_accel_min = -64.44
+radial_accel_max = -27.62
+scale_amount_min = 0.0
+scale_amount_max = 2.5
+scale_amount_curve = SubResource("Curve_fjgef")
+color = Color(0.775391, 0.976311, 1, 1)
+color_ramp = SubResource("Gradient_caisw")
+hue_variation_min = -0.17
+hue_variation_max = 0.13
+hue_variation_curve = SubResource("Curve_1u7m2")
