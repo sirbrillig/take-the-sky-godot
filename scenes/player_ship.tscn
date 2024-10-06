@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://75amelshbw2u"]
+[gd_scene load_steps=25 format=3 uid="uid://75amelshbw2u"]
 
 [ext_resource type="Script" path="res://scenes/player_ship.gd" id="1_2oq58"]
 [ext_resource type="Texture2D" uid="uid://dbjqjfj2dcu21" path="res://images/06.png" id="1_nxi8f"]
@@ -28,6 +28,27 @@ linear_accel_max = 56.52
 scale_min = 0.0
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_v6g22")
+
+[sub_resource type="Curve" id="Curve_mdurx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nw45y"]
+curve = SubResource("Curve_mdurx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_naghp"]
+lifetime_randomness = 0.07
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.34
+spread = 0.0
+initial_velocity_max = 108.7
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 56.52
+scale_min = 0.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_nw45y")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4cuvq"]
 shader = ExtResource("3_c1x3q")
@@ -101,6 +122,16 @@ process_material = SubResource("ParticleProcessMaterial_kyy56")
 lifetime = 0.7
 metadata/_edit_lock_ = true
 
+[node name="DashEmitter" type="GPUParticles2D" parent="."]
+position = Vector2(-10, 0)
+rotation = 3.14159
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_naghp")
+lifetime = 0.7
+explosiveness = 1.0
+metadata/_edit_lock_ = true
+
 [node name="ShipSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_4cuvq")
 rotation = 1.57079
@@ -111,10 +142,12 @@ position_smoothing_enabled = true
 editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1.5, -0.0228748)
 shape = SubResource("CircleShape2D_c3nig")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_mask = 62
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

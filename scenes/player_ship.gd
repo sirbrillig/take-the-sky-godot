@@ -6,10 +6,13 @@ signal player_coins_changed
 signal player_visited_ship
 
 @export var acceleration_rate: float = 0.8
+@export var dash_acceleration_rate: float = 100
 @export var max_velocity: float = 40
+@export var max_dash_velocity: float = 100
 @export var rotation_rate: float = 0.03
 @export var post_hit_invincibility: float = 1.0
 @export var bolt_energy_cost: int = 4
+@export var dash_energy_cost: int = 5
 @export var bolt: PackedScene
 
 var is_being_hit: bool = false
@@ -61,7 +64,10 @@ func _handle_movement():
 		_decelerate()
 
 	if Input.is_action_just_pressed("ui_accept"):
-		_attack()
+		if Global.active_crewmember == Global.CrewMember.Tactician:
+			_attack()
+		if Global.active_crewmember == Global.CrewMember.Pilot:
+			_dash()
 
 func _spend_energy(amount: int) -> bool:
 	if Global.player_ship_energy >= amount:
@@ -75,6 +81,22 @@ func _spend_energy(amount: int) -> bool:
 		Global.gold_coins -= amount
 		return true
 	return false
+
+func _dash():
+	if Global.active_crewmember != Global.CrewMember.Pilot:
+		return
+	if not _spend_energy(dash_energy_cost):
+		return
+	$DashEmitter.emitting = true
+	var prev_accel = acceleration_rate
+	var prev_max_velocity = max_velocity
+	acceleration_rate = dash_acceleration_rate
+	max_velocity = max_dash_velocity
+	velocity = _adjust_speed_for_rotation()
+	acceleration_rate = prev_accel
+	max_velocity = prev_max_velocity
+	await get_tree().create_timer(0.05).timeout
+	$DashEmitter.emitting = false
 
 func _attack():
 	if Global.active_crewmember != Global.CrewMember.Tactician:
