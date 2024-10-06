@@ -13,10 +13,12 @@ signal player_visited_ship
 @export var post_hit_invincibility: float = 1.0
 @export var bolt_energy_cost: int = 4
 @export var dash_energy_cost: int = 5
+@export var dash_time: float = 1.2
 @export var bolt: PackedScene
 
 var is_being_hit: bool = false
 var is_using_gate: bool = false
+var is_dashing: bool = false
 
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
@@ -46,7 +48,7 @@ func _toggle_engines(is_on: bool):
 		$Trail.emitting = false
 
 func _handle_movement():
-	if is_being_hit || is_using_gate:
+	if is_being_hit || is_using_gate || is_dashing:
 		_toggle_engines(false)
 		return
 	if Input.is_action_pressed("ui_left"):
@@ -85,8 +87,11 @@ func _spend_energy(amount: int) -> bool:
 func _dash():
 	if Global.active_crewmember != Global.CrewMember.Pilot:
 		return
+	if is_dashing:
+		return
 	if not _spend_energy(dash_energy_cost):
 		return
+	is_dashing = true
 	$DashEmitter.emitting = true
 	var prev_accel = acceleration_rate
 	var prev_max_velocity = max_velocity
@@ -95,8 +100,10 @@ func _dash():
 	velocity = _adjust_speed_for_rotation()
 	acceleration_rate = prev_accel
 	max_velocity = prev_max_velocity
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(dash_time).timeout
 	$DashEmitter.emitting = false
+	velocity = _adjust_speed_for_rotation()
+	is_dashing = false
 
 func _attack():
 	if Global.active_crewmember != Global.CrewMember.Tactician:
