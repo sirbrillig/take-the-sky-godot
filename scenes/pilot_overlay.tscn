@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbvrjn7s06up7" path="res://scenes/gate_arrow.tscn" id="4_67d7u"]
 [ext_resource type="PackedScene" uid="uid://nnb0kijaxk7u" path="res://scenes/derelict_arrow.tscn" id="4_gj5xq"]
 
-[node name="PilotOverlay" type="CanvasGroup"]
+[node name="PilotOverlay" type="Node2D"]
 
 [node name="EnemyShipArrows" type="CanvasGroup" parent="."]
 script = ExtResource("1_fnrvf")

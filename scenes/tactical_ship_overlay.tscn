@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c72aevgtqtds1"]
+[gd_scene load_steps=5 format=3 uid="uid://c72aevgtqtds1"]
 
+[ext_resource type="Script" path="res://scenes/tactical_ship_overlay.gd" id="1_4iuv8"]
 [ext_resource type="Texture2D" uid="uid://ce275r6dwwydn" path="res://images/sprite-ui-07.sprites/07-64.tres" id="1_ktubh"]
 [ext_resource type="Texture2D" uid="uid://ca5xtcg7wlv48" path="res://images/sprite-ui-07.sprites/07-63.tres" id="1_qojy1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkdud"]
 
 [node name="TacticalShipOverlay" type="CanvasGroup"]
+script = ExtResource("1_4iuv8")
 
 [node name="Panel" type="Panel" parent="."]
 clip_children = 1

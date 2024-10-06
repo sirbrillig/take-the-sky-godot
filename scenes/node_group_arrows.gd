@@ -39,6 +39,8 @@ func _add_arrow(node: Node2D):
 
 func _draw_gate_arrow(node: Node2D, arrow: Sprite2D):
 	arrow.visible = false
+	if Global.active_crewmember != Global.CrewMember.Pilot:
+		return
 	if player.position.distance_to(node.position) < arrow_min_distance:
 		return
 	arrow.visible = true

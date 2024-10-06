@@ -77,6 +77,8 @@ func _spend_energy(amount: int) -> bool:
 	return false
 
 func _attack():
+	if Global.active_crewmember != Global.CrewMember.Tactician:
+		return
 	if not _spend_energy(bolt_energy_cost):
 		return
 	var new_bolt = bolt.instantiate() as CharacterBody2D

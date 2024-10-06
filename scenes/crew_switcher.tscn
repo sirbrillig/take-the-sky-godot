@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbmqsbxoam5na"]
+
+[ext_resource type="Script" path="res://scenes/crew_switcher.gd" id="1_kcp0h"]
+[ext_resource type="Texture2D" uid="uid://twi3d67q0gl2" path="res://images/npcs.sprites/npcs-0.tres" id="1_ya3ss"]
+[ext_resource type="Texture2D" uid="uid://df64r4x1d28ey" path="res://images/npcs.sprites/npcs-42.tres" id="2_1sb8b"]
+
+[node name="CrewSwitcher" type="Node2D"]
+script = ExtResource("1_kcp0h")
+
+[node name="PilotButton" type="Button" parent="."]
+offset_right = 63.0
+offset_bottom = 31.0
+scale = Vector2(0.537735, 0.537735)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Pilot"
+icon = ExtResource("1_ya3ss")
+flat = true
+
+[node name="TacticianButton" type="Button" parent="."]
+offset_left = 40.0
+offset_right = 137.0
+offset_bottom = 31.0
+scale = Vector2(0.582268, 0.582268)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+disabled = true
+text = "Tactician"
+icon = ExtResource("2_1sb8b")
+flat = true
+
+[connection signal="pressed" from="PilotButton" to="." method="_on_pilot_button_pressed"]
+[connection signal="pressed" from="TacticianButton" to="." method="_on_tactician_button_pressed"]

@@ -1,0 +1,1458 @@
+{
+	"textures": [
+		{
+			"image": "npcs.png",
+			"size": {
+				"w": 671,
+				"h": 64
+			},
+			"sprites": [
+				{
+					"filename": "npcs-7.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-36.png",
+					"region": {
+						"x": 1,
+						"y": 24,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-58.png",
+					"region": {
+						"x": 1,
+						"y": 47,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-38.png",
+					"region": {
+						"x": 19,
+						"y": 1,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-39.png",
+					"region": {
+						"x": 19,
+						"y": 24,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-93.png",
+					"region": {
+						"x": 19,
+						"y": 47,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-41.png",
+					"region": {
+						"x": 37,
+						"y": 1,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-42.png",
+					"region": {
+						"x": 37,
+						"y": 24,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-95.png",
+					"region": {
+						"x": 37,
+						"y": 47,
+						"w": 16,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-44.png",
+					"region": {
+						"x": 55,
+						"y": 1,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-52.png",
+					"region": {
+						"x": 55,
+						"y": 24,
+						"w": 16,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-69.png",
+					"region": {
+						"x": 55,
+						"y": 47,
+						"w": 13,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-71.png",
+					"region": {
+						"x": 70,
+						"y": 47,
+						"w": 13,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-63.png",
+					"region": {
+						"x": 73,
+						"y": 1,
+						"w": 15,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-65.png",
+					"region": {
+						"x": 73,
+						"y": 24,
+						"w": 15,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-81.png",
+					"region": {
+						"x": 85,
+						"y": 47,
+						"w": 13,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-75.png",
+					"region": {
+						"x": 90,
+						"y": 1,
+						"w": 15,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-77.png",
+					"region": {
+						"x": 90,
+						"y": 24,
+						"w": 15,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-83.png",
+					"region": {
+						"x": 100,
+						"y": 47,
+						"w": 13,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-10.png",
+					"region": {
+						"x": 107,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-21.png",
+					"region": {
+						"x": 107,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-70.png",
+					"region": {
+						"x": 115,
+						"y": 47,
+						"w": 12,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-23.png",
+					"region": {
+						"x": 123,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-33.png",
+					"region": {
+						"x": 123,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-82.png",
+					"region": {
+						"x": 129,
+						"y": 47,
+						"w": 12,
+						"h": 16
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-35.png",
+					"region": {
+						"x": 139,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-45.png",
+					"region": {
+						"x": 139,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-57.png",
+					"region": {
+						"x": 143,
+						"y": 47,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-47.png",
+					"region": {
+						"x": 155,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-60.png",
+					"region": {
+						"x": 155,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-59.png",
+					"region": {
+						"x": 161,
+						"y": 47,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-61.png",
+					"region": {
+						"x": 171,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-62.png",
+					"region": {
+						"x": 171,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-94.png",
+					"region": {
+						"x": 179,
+						"y": 47,
+						"w": 16,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-64.png",
+					"region": {
+						"x": 187,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-76.png",
+					"region": {
+						"x": 187,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-84.png",
+					"region": {
+						"x": 203,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-86.png",
+					"region": {
+						"x": 203,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-87.png",
+					"region": {
+						"x": 219,
+						"y": 1,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-89.png",
+					"region": {
+						"x": 219,
+						"y": 24,
+						"w": 14,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-22.png",
+					"region": {
+						"x": 235,
+						"y": 1,
+						"w": 13,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-34.png",
+					"region": {
+						"x": 235,
+						"y": 24,
+						"w": 13,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-90.png",
+					"region": {
+						"x": 250,
+						"y": 1,
+						"w": 13,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-92.png",
+					"region": {
+						"x": 250,
+						"y": 24,
+						"w": 13,
+						"h": 21
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-1.png",
+					"region": {
+						"x": 265,
+						"y": 1,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-4.png",
+					"region": {
+						"x": 265,
+						"y": 23,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-6.png",
+					"region": {
+						"x": 283,
+						"y": 1,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-8.png",
+					"region": {
+						"x": 283,
+						"y": 23,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-37.png",
+					"region": {
+						"x": 301,
+						"y": 1,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-40.png",
+					"region": {
+						"x": 301,
+						"y": 23,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-43.png",
+					"region": {
+						"x": 319,
+						"y": 1,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-51.png",
+					"region": {
+						"x": 319,
+						"y": 23,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-53.png",
+					"region": {
+						"x": 337,
+						"y": 1,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-85.png",
+					"region": {
+						"x": 337,
+						"y": 23,
+						"w": 16,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-12.png",
+					"region": {
+						"x": 355,
+						"y": 1,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-13.png",
+					"region": {
+						"x": 355,
+						"y": 23,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-14.png",
+					"region": {
+						"x": 372,
+						"y": 1,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-15.png",
+					"region": {
+						"x": 372,
+						"y": 23,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-17.png",
+					"region": {
+						"x": 389,
+						"y": 1,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-20.png",
+					"region": {
+						"x": 389,
+						"y": 23,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-24.png",
+					"region": {
+						"x": 406,
+						"y": 1,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-25.png",
+					"region": {
+						"x": 406,
+						"y": 23,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-26.png",
+					"region": {
+						"x": 423,
+						"y": 1,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-27.png",
+					"region": {
+						"x": 423,
+						"y": 23,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-29.png",
+					"region": {
+						"x": 440,
+						"y": 1,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-30.png",
+					"region": {
+						"x": 440,
+						"y": 23,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-49.png",
+					"region": {
+						"x": 457,
+						"y": 1,
+						"w": 15,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-9.png",
+					"region": {
+						"x": 457,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-11.png",
+					"region": {
+						"x": 473,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-16.png",
+					"region": {
+						"x": 474,
+						"y": 1,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-18.png",
+					"region": {
+						"x": 489,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-19.png",
+					"region": {
+						"x": 490,
+						"y": 1,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-28.png",
+					"region": {
+						"x": 505,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-31.png",
+					"region": {
+						"x": 506,
+						"y": 1,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-32.png",
+					"region": {
+						"x": 521,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-46.png",
+					"region": {
+						"x": 522,
+						"y": 1,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-55.png",
+					"region": {
+						"x": 537,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-72.png",
+					"region": {
+						"x": 538,
+						"y": 1,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-73.png",
+					"region": {
+						"x": 553,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-74.png",
+					"region": {
+						"x": 554,
+						"y": 1,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-88.png",
+					"region": {
+						"x": 569,
+						"y": 23,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-91.png",
+					"region": {
+						"x": 570,
+						"y": 1,
+						"w": 14,
+						"h": 20
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-68.png",
+					"region": {
+						"x": 585,
+						"y": 23,
+						"w": 17,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-78.png",
+					"region": {
+						"x": 585,
+						"y": 44,
+						"w": 17,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-0.png",
+					"region": {
+						"x": 586,
+						"y": 1,
+						"w": 16,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-2.png",
+					"region": {
+						"x": 604,
+						"y": 1,
+						"w": 16,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-3.png",
+					"region": {
+						"x": 604,
+						"y": 22,
+						"w": 16,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-5.png",
+					"region": {
+						"x": 604,
+						"y": 43,
+						"w": 16,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-48.png",
+					"region": {
+						"x": 622,
+						"y": 1,
+						"w": 16,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-50.png",
+					"region": {
+						"x": 640,
+						"y": 1,
+						"w": 16,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-66.png",
+					"region": {
+						"x": 622,
+						"y": 22,
+						"w": 15,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-67.png",
+					"region": {
+						"x": 622,
+						"y": 43,
+						"w": 15,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-79.png",
+					"region": {
+						"x": 639,
+						"y": 22,
+						"w": 15,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-54.png",
+					"region": {
+						"x": 656,
+						"y": 22,
+						"w": 14,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-80.png",
+					"region": {
+						"x": 639,
+						"y": 43,
+						"w": 15,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "npcs-56.png",
+					"region": {
+						"x": 656,
+						"y": 43,
+						"w": 14,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:fce13bfec1a30fc62be1b615d4d6045a:d08895dc805506bced4075b6e9cff216:d8f659a22fba703609c369750f9f6af3$"
+	}
+}
