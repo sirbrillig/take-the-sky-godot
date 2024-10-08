@@ -32,7 +32,9 @@ func _handle_hp_check():
 	if hit_points <= 0:
 		call_deferred("_explode")
 
-func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+func _on_area_2d_body_entered(body) -> void:
+	if not body is CharacterBody2D:
+		return
 	if body.get_meta("stop_when_hit", false):
 		velocity = Vector2.ZERO
 	if body is Bolt or body is PlayerBolt:

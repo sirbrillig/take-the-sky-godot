@@ -159,7 +159,11 @@ func _on_player_hit(angle_of_hit: float):
 	is_being_hit = false
 	$SmokeEmitter.emitting = false
 
-func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+func _on_area_2d_body_entered(body) -> void:
+	# TODO: bounce off walls
+	if not body is CharacterBody2D:
+		velocity = Vector2.ZERO
+		return
 	if is_being_hit || is_using_gate:
 		return
 	if body.get_meta("bounce_when_hit", false):

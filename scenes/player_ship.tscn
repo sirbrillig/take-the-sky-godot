@@ -25,10 +25,20 @@ radius = 11.0
 size = Vector2(1.25, 1.5)
 
 [node name="PlayerShip" type="CharacterBody2D" groups=["PlayerGroup"]]
-position = Vector2(8, -8)
+position = Vector2(8, -10)
 collision_mask = 106
 motion_mode = 1
+wall_min_slide_angle = 0.750492
 script = ExtResource("1_2oq58")
+acceleration_rate = null
+dash_acceleration_rate = null
+max_velocity = null
+max_dash_velocity = null
+rotation_rate = null
+post_hit_invincibility = null
+bolt_energy_cost = null
+dash_energy_cost = null
+dash_time = null
 bolt = ExtResource("2_mdahm")
 metadata/_edit_group_ = true
 
@@ -118,7 +128,7 @@ hue_variation_max = 0.3
 
 [node name="TacticalShipOverlay" parent="." instance=ExtResource("6_womi0")]
 top_level = true
-position = Vector2(8, -8)
+position = Vector2(8, -10)
 
 [node name="TacticalOverlayTransform" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("../TacticalShipOverlay")
