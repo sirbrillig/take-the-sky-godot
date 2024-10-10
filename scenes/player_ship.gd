@@ -6,6 +6,7 @@ signal player_coins_changed
 signal player_visited_ship
 
 @export var acceleration_rate: float = 0.8
+@export var bounce_deceleration_rate: float = 10
 @export var dash_acceleration_rate: float = 100
 @export var max_velocity: float = 40
 @export var max_dash_velocity: float = 100
@@ -23,10 +24,13 @@ var is_dashing: bool = false
 
 enum RotationDirection {CLOCKWISE, COUNTERCLOCKWISE}
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	_update_health_bar()
 	_handle_movement()
-	move_and_slide()
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.move_toward(Vector2.ZERO, bounce_deceleration_rate)
+		velocity = velocity.bounce(collision.get_normal())
 
 func _update_health_bar():
 	$TacticalShipOverlay/Panel/TextureProgressBar.max_value = Global.player_max_health
@@ -160,9 +164,7 @@ func _on_player_hit(angle_of_hit: float):
 	$SmokeEmitter.emitting = false
 
 func _on_area_2d_body_entered(body) -> void:
-	# TODO: bounce off walls
 	if not body is CharacterBody2D:
-		velocity = Vector2.ZERO
 		return
 	if is_being_hit || is_using_gate:
 		return

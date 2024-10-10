@@ -18,7 +18,7 @@ func _ready() -> void:
 	var ship = find_derelict_ship("Dovetail")
 	if ship is DerelictShip:
 		ship.visible = false
-	create_asteroids()
+	# create_asteroids()
 
 
 func _process(_delta: float) -> void:
