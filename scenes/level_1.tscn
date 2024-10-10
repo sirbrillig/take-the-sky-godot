@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cpuntx3vrj4ap"]
+[gd_scene load_steps=20 format=4 uid="uid://cpuntx3vrj4ap"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_wfev5"]
 [ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="2_evayv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://btyhbudhn4gj1" path="res://scenes/derelict_ship.tscn" id="5_e1if5"]
 [ext_resource type="PackedScene" uid="uid://c4o1wt1r3jfrt" path="res://scenes/hud.tscn" id="6_jrv2p"]
 [ext_resource type="PackedScene" uid="uid://bjl58jfsq80ac" path="res://scenes/gate.tscn" id="7_6oipc"]
+[ext_resource type="PackedScene" uid="uid://wxkblrk0tbaf" path="res://scenes/electric_buoy.tscn" id="8_gkkco"]
 [ext_resource type="Script" path="res://scenes/dialog_control.gd" id="10_cw0t2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_apg0a"]
@@ -71,15 +72,6 @@ dialogue_file_name = "first_convo"
 [node name="PlayerShip" parent="." instance=ExtResource("3_qcrya")]
 position = Vector2(-262, -47)
 wall_min_slide_angle = 0.0122173
-acceleration_rate = 0.8
-dash_acceleration_rate = 100.0
-max_velocity = 40.0
-max_dash_velocity = 100.0
-rotation_rate = 0.03
-post_hit_invincibility = 1.0
-bolt_energy_cost = 4
-dash_energy_cost = 5
-dash_time = 1.2
 
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 position = Vector2(506, 410)
@@ -140,6 +132,9 @@ monitorable = false
 position = Vector2(796, -123)
 shape = SubResource("RectangleShape2D_wqo8n")
 debug_color = Color(0.924474, 0.0234675, 0.670807, 0.42)
+
+[node name="ElectricBuoy" parent="." instance=ExtResource("8_gkkco")]
+position = Vector2(271, -86)
 
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]

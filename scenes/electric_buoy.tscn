@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://wxkblrk0tbaf"]
+
+[ext_resource type="Texture2D" uid="uid://d3nt480f0y26a" path="res://images/tiny_ship_buoy.png" id="1_4eha1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c2fma"]
+height = 26.0
+
+[node name="ElectricBuoy" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 0
+motion_mode = 1
+wall_min_slide_angle = 0.0942478
+metadata/collision_damage = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4eha1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c2fma")

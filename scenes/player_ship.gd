@@ -150,24 +150,31 @@ func _flash_from_hit():
 	await get_tree().create_timer(0.05).timeout
 	$ShipSprite.material.set_shader_parameter("alpha", 0)
 
-func _on_player_hit(angle_of_hit: float):
+func _damage_player(amount: int):
 	if is_invincible():
 		return
 	is_being_hit = true
 	_flash_from_hit()
 	$SmokeEmitter.emitting = true
-	_knockback(angle_of_hit)
-	Global.player_health -= 1
+	Global.player_health -= amount
 	player_health_changed.emit()
 	await get_tree().create_timer(post_hit_invincibility).timeout
 	is_being_hit = false
 	$SmokeEmitter.emitting = false
+
+func _on_player_hit(angle_of_hit: float):
+	if is_invincible():
+		return
+	_knockback(angle_of_hit)
+	_damage_player(1)
 
 func _on_area_2d_body_entered(body) -> void:
 	if not body is CharacterBody2D:
 		return
 	if is_being_hit || is_using_gate:
 		return
+	if body.get_meta("collision_damage", 0):
+		_damage_player(body.get_meta("collision_damage", 0))
 	if body.get_meta("bounce_when_hit", false):
 		var angle_of_hit: float = body.position.angle_to_point(position)
 		_on_player_hit(angle_of_hit)
