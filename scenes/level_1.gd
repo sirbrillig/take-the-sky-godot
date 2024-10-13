@@ -38,9 +38,6 @@ func _activate_enemy_ships(count: int):
 		call_deferred("add_child", enemy)
 
 func handle_ship_encounter(ship_name: String):
-	var ship = find_derelict_ship(ship_name)
-	if ship is DerelictShip:
-		ship.visited = true
 	match ship_name:
 		"Brave Combo":
 			$DialogueControl.start_dialogue("start")

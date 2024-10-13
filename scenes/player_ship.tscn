@@ -136,6 +136,24 @@ metadata/_edit_lock_ = true
 [node name="PlayerShipEnergyTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="GotStuffEmitter" type="CPUParticles2D" parent="."]
+rotation = -1.57079
+emitting = false
+amount = 20
+preprocess = 0.5
+emission_shape = 2
+emission_sphere_radius = 20.0
+spread = 0.0
+gravity = Vector2(0, 0)
+radial_accel_min = -40.16
+scale_amount_max = 2.0
+color = Color(0.982422, 0.967581, 0.0326195, 1)
+
+[node name="GotStuffTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PlayerShipEnergyTimer" to="." method="_on_player_ship_energy_timer_timeout"]
+[connection signal="timeout" from="GotStuffTimer" to="." method="_on_got_stuff_timer_timeout"]

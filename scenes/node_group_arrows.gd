@@ -1,10 +1,12 @@
 extends CanvasGroup
 class_name NodeGroupArrows
 
+@export var arrow_max_distance: float = 5000
 @export var arrow_min_distance: float = 100
 @export var arrow_radius: float = 45
 @export var arrow_scene: PackedScene
 @export var node_group_name: String
+@export var arrow_opacity_distance_offset: float = 110
 
 @onready var player = get_tree().get_nodes_in_group("PlayerGroup")[0]
 
@@ -41,7 +43,10 @@ func _draw_gate_arrow(node: Node2D, arrow: Sprite2D):
 	arrow.visible = false
 	if Global.active_crewmember != Global.CrewMember.Pilot:
 		return
-	if player.position.distance_to(node.position) < arrow_min_distance:
+	var distance = player.position.distance_to(node.position)
+	if distance > arrow_max_distance:
+		return
+	if distance < arrow_min_distance:
 		return
 	arrow.visible = true
 	arrow_angle = player.position.angle_to_point(node.position)
@@ -50,3 +55,6 @@ func _draw_gate_arrow(node: Node2D, arrow: Sprite2D):
 	arrow.position.x = arrow_radius * x_pos
 	arrow.position.y = arrow_radius * y_pos
 	arrow.look_at(node.position)
+	# Make the arrow more opaque the closer you get to the target
+	var fully_opaque_distance = arrow_min_distance + arrow_opacity_distance_offset
+	arrow.modulate.a = 1 - ((distance - fully_opaque_distance) / (arrow_max_distance - fully_opaque_distance))

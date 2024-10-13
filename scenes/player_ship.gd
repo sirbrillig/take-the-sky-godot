@@ -180,9 +180,13 @@ func _on_area_2d_body_entered(body) -> void:
 		_on_player_hit(angle_of_hit)
 	if body.get_meta("stop_when_hit", false):
 		velocity = Vector2.ZERO
-	if body is DerelictShip and body.visible:
+	if body is DerelictShip and body.visible and not body.visited:
+		if body.coins > 0:
+			$GotStuffEmitter.emitting = true
+			$GotStuffTimer.start()
 		Global.gold_coins += body.coins
 		body.coins = 0
+		body.visited = true
 		player_coins_changed.emit()
 		player_visited_ship.emit(body.ship_name)
 
@@ -201,3 +205,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _on_player_ship_energy_timer_timeout() -> void:
 	if Global.player_ship_energy < Global.player_ship_max_energy:
 		Global.player_ship_energy += 1
+
+
+func _on_got_stuff_timer_timeout() -> void:
+	$GotStuffEmitter.emitting = false
