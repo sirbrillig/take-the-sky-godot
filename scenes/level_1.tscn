@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cpuntx3vrj4ap"]
+[gd_scene load_steps=21 format=4 uid="uid://cpuntx3vrj4ap"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_wfev5"]
 [ext_resource type="Texture2D" uid="uid://no7emv8six31" path="res://images/Purple Space.png" id="2_evayv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://s6oyhg2go8or" path="res://scenes/asteroid.tscn" id="4_wlegp"]
 [ext_resource type="Texture2D" uid="uid://ccwy6trld5rqp" path="res://images/Block 1 small.png" id="5_11o38"]
 [ext_resource type="PackedScene" uid="uid://btyhbudhn4gj1" path="res://scenes/derelict_ship.tscn" id="5_e1if5"]
+[ext_resource type="PackedScene" uid="uid://be64focjw2d2w" path="res://scenes/moving_buoy.tscn" id="6_5pipu"]
 [ext_resource type="PackedScene" uid="uid://c4o1wt1r3jfrt" path="res://scenes/hud.tscn" id="6_jrv2p"]
 [ext_resource type="PackedScene" uid="uid://bjl58jfsq80ac" path="res://scenes/gate.tscn" id="7_6oipc"]
 [ext_resource type="PackedScene" uid="uid://wxkblrk0tbaf" path="res://scenes/electric_buoy.tscn" id="8_gkkco"]
@@ -134,10 +135,10 @@ shape = SubResource("RectangleShape2D_wqo8n")
 debug_color = Color(0.924474, 0.0234675, 0.670807, 0.42)
 
 [node name="ElectricBuoy" parent="." instance=ExtResource("8_gkkco")]
-position = Vector2(240, -97)
+position = Vector2(240, -104)
 
 [node name="ElectricBuoy2" parent="." instance=ExtResource("8_gkkco")]
-position = Vector2(299, -48)
+position = Vector2(296, -56)
 
 [node name="ElectricBuoy4" parent="." instance=ExtResource("8_gkkco")]
 position = Vector2(368, -104)
@@ -146,16 +147,65 @@ position = Vector2(368, -104)
 position = Vector2(368, 0)
 
 [node name="ElectricBuoy6" parent="." instance=ExtResource("8_gkkco")]
-position = Vector2(432, -48)
+position = Vector2(432, -56)
 
 [node name="ElectricBuoy7" parent="." instance=ExtResource("8_gkkco")]
-position = Vector2(496, -96)
+position = Vector2(496, -104)
 
 [node name="ElectricBuoy8" parent="." instance=ExtResource("8_gkkco")]
-position = Vector2(496, -8)
+position = Vector2(504, 0)
 
 [node name="ElectricBuoy3" parent="." instance=ExtResource("8_gkkco")]
-position = Vector2(240, -8)
+position = Vector2(240, 0)
+
+[node name="MovingBuoy" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(579.953, -112.332)
+
+[node name="MovingBuoy2" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(622, -16)
+
+[node name="MovingBuoy3" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(680, 32)
+
+[node name="MovingBuoy4" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(680, 32)
+
+[node name="MovingBuoy5" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(579.953, -112.332)
+
+[node name="MovingBuoy6" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(622, -16)
+
+[node name="MovingBuoy7" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(680, 32)
+
+[node name="MovingBuoy8" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(680, 32)
+
+[node name="MovingBuoy9" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(552, 88)
+rotation = 1.57079
+left_right = false
+
+[node name="MovingBuoy10" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(512, 224)
+rotation = 1.57079
+left_right = false
+
+[node name="MovingBuoy11" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(464, 136)
+rotation = 1.57079
+left_right = false
+
+[node name="MovingBuoy12" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(416, 200)
+rotation = 1.57079
+left_right = false
+
+[node name="MovingBuoy13" parent="." instance=ExtResource("6_5pipu")]
+position = Vector2(368, 112)
+rotation = 1.57079
+left_right = false
 
 [connection signal="player_coins_changed" from="PlayerShip" to="." method="_on_player_ship_player_coins_changed"]
 [connection signal="player_health_changed" from="PlayerShip" to="." method="_on_player_ship_player_health_changed"]
